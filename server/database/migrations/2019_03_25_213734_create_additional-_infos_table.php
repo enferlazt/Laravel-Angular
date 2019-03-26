@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateAdditionalInfosTable extends Migration
 {
     /**
@@ -14,10 +13,10 @@ class CreateAdditionalInfosTable extends Migration
     public function up()
     {
         Schema::create('additional-_infos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->index('id_car');
+            $table->increments('id');
+            $table->unsignedInteger('id_car');
+            $table->foreign('id_car')->references('id')->on('cars')->onDelete('cascade');
             $table->string('name');
-            $table->timestamps();
         });
     }
 

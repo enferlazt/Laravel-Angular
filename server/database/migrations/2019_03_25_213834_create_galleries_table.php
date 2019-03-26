@@ -14,8 +14,9 @@ class CreateGalleriesTable extends Migration
     public function up()
     {
         Schema::create('galleries', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->index('id_car');
+            $table->increments('id');
+            $table->unsignedInteger('id_car');
+            $table->foreign('id_car')->references('id')->on('cars')->onDelete('cascade');
             $table->string('img');
         });
     }
