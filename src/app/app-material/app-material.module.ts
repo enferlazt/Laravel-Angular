@@ -19,7 +19,8 @@ import {
     MatSliderModule,
     MatToolbarModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule
   ],
   exports: [
     CommonModule,
@@ -30,7 +31,8 @@ import {
     MatSliderModule,
     MatToolbarModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule
   ]
 })
 export class AppMaterialModule { }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MessageService} from './message.service';
 import {HttpErrorHandler} from './http-error-handler.service';
 import {CarsComponent} from './components/cars/cars.component';
@@ -22,7 +22,6 @@ import {AppMaterialModule} from './app-material/app-material.module';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
     AppMaterialModule
   ],
   providers: [MessageService, HttpErrorHandler],
