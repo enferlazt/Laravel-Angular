@@ -1,0 +1,27 @@
+<mat-card>
+  <form (submit)="add($event)">
+    <label>Enter Task Title:</label>
+    <mat-form-field>
+      <input type="text" name="brand" matInput placeholder="Brand" [(ngModel)]="brand">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" name="model" matInput placeholder="Model" [(ngModel)]="model">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" name="year" matInput placeholder="Year" [(ngModel)]="year">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" name="image" matInput placeholder="Image" [(ngModel)]="image">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" name="price" matInput placeholder="Price" [(ngModel)]="price">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" name="mileage" matInput placeholder="Mileage" [(ngModel)]="mileage">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" name="description" matInput placeholder="Description" [(ngModel)]="description">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add Car</button>
+  </form>
+</mat-card>

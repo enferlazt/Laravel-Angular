@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('add', 'taskController@add');
+
+Route::get('get', 'taskController@get');
+
+Route::post('delete', 'taskController@delete');
+
+Route::post('singular', 'taskController@getone');
