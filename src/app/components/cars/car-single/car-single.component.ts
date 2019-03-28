@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Car} from "../../../Car";
-import {CarService} from "../../../service/car.service";
+import {Car} from '../../../Car';
+import {ActivatedRoute} from '@angular/router';
+import {CarService} from '../../../service/car.service';
 
 @Component({
-  selector: 'app-task-detail',
-  templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.scss']
+  selector: 'app-car-single',
+  templateUrl: './car-single.component.html',
+  styleUrls: ['./car-single.component.scss']
 })
-export class TaskDetailComponent implements OnInit {
+export class CarSingleComponent implements OnInit {
 
   car: Car;
 

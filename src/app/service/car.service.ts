@@ -13,7 +13,7 @@ headers = headers.append('X-Requested-With', 'XMLHttpRequest');﻿
 })
 export class CarService {
 
-  server:string = 'http://127.0.0.1:8000/server/';
+  server:string = 'http://localhost/Laravel-Angular/server/public/';
 
   constructor(private http: HttpClient) { }
 

@@ -3,11 +3,11 @@ import {CarService} from "../../../service/car.service";
 import {MessageService} from "../../../service/message.service";
 
 @Component({
-  selector: 'app-task-form',
-  templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss']
+  selector: 'app-car-add-new',
+  templateUrl: './car-add-new.component.html',
+  styleUrls: ['./car-add-new.component.scss']
 })
-export class TaskFormComponent implements OnInit {
+export class CarAddNewComponent implements OnInit {
 
   brand:string;
   model:string;
@@ -31,6 +31,6 @@ export class TaskFormComponent implements OnInit {
         this.image = '';
         this.description = '';
         this.msg.setMessage("success");
-    });
+      });
   }
 }

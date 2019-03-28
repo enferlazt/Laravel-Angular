@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Car} from "../../../Car";
 import {CarService} from "../../../service/car.service";
 import {MessageService} from "../../../service/message.service";
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  selector: 'app-car-show-all',
+  templateUrl: './car-show-all.component.html',
+  styleUrls: ['./car-show-all.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class CarShowAllComponent implements OnInit {
 
   cars : Car[] = [];
+  @Input()car: Car;
 
   constructor(private carService: CarService, private msg: MessageService) {}
 
@@ -24,6 +25,12 @@ export class TaskListComponent implements OnInit {
   getAllCars(){
     this.carService.getCars().subscribe((all) => {
       this.cars = all;
+    });
+  }
+
+  Delete(){
+    this.carService.deleteCar(this.car.id).subscribe((data) => {
+      this.msg.setMessage('success');
     });
   }
 

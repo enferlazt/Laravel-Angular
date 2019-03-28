@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskFormComponent } from './task-form.component';
+import { CarSingleComponent } from './car-single.component';
 
-describe('TaskFormComponent', () => {
-  let component: TaskFormComponent;
-  let fixture: ComponentFixture<TaskFormComponent>;
+describe('CarSingleComponent', () => {
+  let component: CarSingleComponent;
+  let fixture: ComponentFixture<CarSingleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskFormComponent ]
+      declarations: [ CarSingleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskFormComponent);
+    fixture = TestBed.createComponent(CarSingleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

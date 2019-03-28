@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {TaskManagerComponent} from "./components/task-manager/task-manager.component";
-import {TaskDetailComponent} from './components/task-manager/task-detail/task-detail.component';
+import {CarAddNewComponent} from './components/cars/car-add-new/car-add-new.component';
+import {CarShowAllComponent} from './components/cars/car-show-all/car-show-all.component';
+import {CarSingleComponent} from './components/cars/car-single/car-single.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'cars', pathMatch: 'full'},
-  {path: 'cars', component: TaskManagerComponent},
-  {path: 'car/:id', component: TaskDetailComponent},
+  {path: 'cars', component: CarShowAllComponent},
+  {path: 'cars/add', component: CarAddNewComponent},
+  {path: 'car/:id', component: CarSingleComponent},
 ];
 
 @NgModule({

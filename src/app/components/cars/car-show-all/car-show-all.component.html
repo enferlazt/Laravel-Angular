@@ -1,0 +1,8 @@
+<ul>
+  <li *ngFor="let car of cars; let id = index;">
+    {{car.brand}} {{car.model}} {{car.year}}
+    <button mat-raised-button color="primary" routerLink="/car/{{id}}">Show more</button>
+    <button mat-raised-button color="warn" (click)="Delete()">Delete</button>
+    <button mat-raised-button color="primary" routerLink="/cars/add">Add New</button>
+  </li>
+</ul>

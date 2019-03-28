@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('add', 'taskController@add');
+Route::post('add', 'carController@add');
 
-Route::get('get', 'taskController@get');
+Route::get('get', 'carController@get');
 
-Route::post('delete', 'taskController@delete');
+Route::post('delete', 'carController@delete');
 
-Route::post('singular', 'taskController@getone');
+Route::post('singular', 'carController@getone');

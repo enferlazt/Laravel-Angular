@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskManagerComponent } from './task-manager.component';
+import { CarShowAllComponent } from './car-show-all.component';
 
-describe('TaskManagerComponent', () => {
-  let component: TaskManagerComponent;
-  let fixture: ComponentFixture<TaskManagerComponent>;
+describe('CarShowAllComponent', () => {
+  let component: CarShowAllComponent;
+  let fixture: ComponentFixture<CarShowAllComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TaskManagerComponent ]
+      declarations: [ CarShowAllComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskManagerComponent);
+    fixture = TestBed.createComponent(CarShowAllComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
