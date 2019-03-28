@@ -20,7 +20,7 @@ import {
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   exports: [
     CommonModule,

@@ -1,8 +1,12 @@
-<ul>
-  <li *ngFor="let car of cars; let id = index;">
-    {{car.brand}} {{car.model}} {{car.year}}
-    <button mat-raised-button color="primary" routerLink="/car/{{id}}">Show more</button>
-    <button mat-raised-button color="warn" (click)="Delete()">Delete</button>
-    <button mat-raised-button color="primary" routerLink="/cars/add">Add New</button>
+<button mat-raised-button color="accent" class="add_new" routerLink="/cars/add">Add New</button>
+<ul class="cars">
+  <li class="section" *ngFor="let car of cars; let id = index;">
+    <div class="flex-elem">
+      <img class="image" src="{{car.image}}" alt="">
+      <div class="desc">
+        <h3><a href="/car/{{id}}">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
+      </div>
+      <button color="warn" (click)="Delete()"><mat-icon>clear</mat-icon></button>
+    </div>
   </li>
 </ul>

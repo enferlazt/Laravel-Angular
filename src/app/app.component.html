@@ -1,5 +1,10 @@
 <app-header></app-header>
-<hr>
-<router-outlet></router-outlet>
-<hr>
+<div class="flex-container">
+    <mat-card class="flex-element first">
+        Search Form
+    </mat-card>
+    <mat-card class="flex-element last">
+        <router-outlet></router-outlet>
+    </mat-card>
+</div>
 <app-footer></app-footer>
