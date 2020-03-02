@@ -43,18 +43,7 @@ export class CarService {
   }
 
   singularCar(index):Observable<Car> {
-    const newCar = {
-      id: index,
-      brand: 'not set',
-      model: 'not set',
-      year: 'not set',
-      image: 'not set',
-      price: 'not set',
-      mileage: 'not set',
-      description: 'not set',
-      date: new Date()
-    };
 
-    return this.http.post<Car>(this.server + 'singular', newCar);
+    return this.http.get<Car>(this.server + 'singular', {params: {id: index}});
   }
 }

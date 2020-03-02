@@ -21,4 +21,4 @@ Route::get('get', 'carController@get');
 
 Route::post('delete', 'carController@delete');
 
-Route::post('singular', 'carController@getone');
+Route::get('singular', 'carController@singular');
