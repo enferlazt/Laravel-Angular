@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 let headers: HttpHeaders = new HttpHeaders();
 headers = headers.append('enctype', 'multipart/form-data');
 headers = headers.append('Content-Type', 'application/json');
-headers = headers.append('X-Requested-With', 'XMLHttpRequest');﻿
+headers = headers.append('X-Requested-With', 'XMLHttpRequest');
 
 @Injectable({
   providedIn: 'root'
@@ -23,27 +23,14 @@ export class CarService {
   }
 
   getCars():Observable<Car[]> {
-    return this.http.get<Car[]>(this.server + 'get');
+    return this.http.get<Car[]>(this.server + 'all');
   }
 
-  deleteCar(index):Observable<Car> {
-    const newCar = {
-      id: index,
-      brand: 'not set',
-      model: 'not set',
-      year: 'not set',
-      image: 'not set',
-      price: 'not set',
-      mileage: 'not set',
-      description: 'not set',
-      date: new Date()
-    };
-
-    return this.http.post<Car>(this.server + 'delete', newCar);
+  deleteCar(index):Observable<{}> {
+    return this.http.delete(this.server + 'delete', {params: {id: index}});
   }
 
   singularCar(index):Observable<Car> {
-
     return this.http.get<Car>(this.server + 'singular', {params: {id: index}});
   }
 }

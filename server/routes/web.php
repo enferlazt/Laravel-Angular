@@ -10,15 +10,3 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::post('add', 'carController@add');
-
-Route::get('get', 'carController@get');
-
-Route::post('delete', 'carController@delete');
-
-Route::get('singular', 'carController@singular');

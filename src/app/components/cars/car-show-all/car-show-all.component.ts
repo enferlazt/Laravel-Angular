@@ -28,8 +28,9 @@ export class CarShowAllComponent implements OnInit {
     });
   }
 
-  Delete(){
-    this.carService.deleteCar(this.car.id).subscribe((data) => {
+  remove(id){
+    this.carService.deleteCar(id).subscribe((data) => {
+      this.getAllCars();
       this.msg.setMessage('success');
     });
   }

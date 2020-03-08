@@ -12,3 +12,15 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::post('add', 'carController@add');
+
+Route::get('all', 'carController@all');
+
+Route::delete('delete', 'carController@delete');
+
+Route::get('singular', 'carController@singular');

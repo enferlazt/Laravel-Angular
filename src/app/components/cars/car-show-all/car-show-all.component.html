@@ -4,9 +4,9 @@
     <div class="flex-elem">
       <img class="image" src="{{car.image}}" alt="">
       <div class="desc">
-        <h3><a href="/car/{{id}}">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
+        <h3><a href="/car/{{car.id}}">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
       </div>
-      <button color="warn" (click)="Delete()"><mat-icon>clear</mat-icon></button>
+      <button color="warn" (click)="remove(car.id)"><mat-icon>clear</mat-icon></button>
     </div>
   </li>
 </ul>

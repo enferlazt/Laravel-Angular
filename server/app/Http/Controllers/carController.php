@@ -32,18 +32,18 @@ class carController extends Controller
         return $car;
     }
 
-    function get(){
+    function all(){
         $records = car::all();
         return response()->json($records);
     }
 
     function delete(Request $request){
         $id = $request->input('id');
-
         $record = car::find($id);
         $record->delete();
-
-        return $record;
+        return [
+            'status' => 'done',
+        ];
     }
 
     function singular(Request $request){
