@@ -8,28 +8,40 @@ use App\Car;
 class carController extends Controller
 {
     function add(Request $request){
-        $brand = $request->input('brand');
-        $model = $request->input('model');
-        $year = $request->input('year');
-        $image = $request->input('image');
-        $price = $request->input('price');
-        $mileage = $request->input('mileage');
-        $description = $request->input('description');
-        $date = $request->input('date');
-
         $car = new car();
-        $car->brand = $brand;
-        $car->model = $model;
-        $car->year = $year;
-        $car->image = $image;
-        $car->price = $price;
-        $car->mileage = $mileage;
-        $car->description = $description;
-        $car->date = $date;
+        $car->brand = $request->brand !== null ? $request->brand : '';
+        $car->model = $request->model !== null ? $request->model : '';
+        $car->year = $request->year !== null ? $request->year : '';
+        $car->image = $request->image !== null ? $request->image : '';
+        $car->price = $request->price !== null ? $request->price : '';
+        $car->mileage = $request->mileage !== null ? $request->mileage : '';
+        $car->description = $request->description !== null ? $request->description : '';
+        $car->created_at = date("Y-m-d H:i:s");
+        $car->updated_at = $car->created_at;
+        // if($request->has('brand')){
+        //     $car->brand = $request->brand;
+        // }
+        // if($request->has('year')){
+        //     $car->year = $request->year;
+        // }
+        // if($request->has('image')){
+        //     $car->image = $request->image;
+        // }
+        // if($request->has('price')){
+        //     $car->price = $request->price;
+        // }
+        // if($request->has('mileage')){
+        //     $car->mileage = $request->mileage;
+        // }
+        // if($request->has('description')){
+        //     $car->description = $request->description;
+        // }
 
-        $car->save();
+        // $car->save();
 
-        return $car;
+        return [
+            'status' => 'done',
+        ];
     }
 
     function all(){

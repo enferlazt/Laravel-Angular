@@ -9,7 +9,7 @@ import {MessageService} from "../../../service/message.service";
   styleUrls: ['./car-show-all.component.scss']
 })
 export class CarShowAllComponent implements OnInit {
-
+  
   cars : Car[] = [];
   @Input()car: Car;
 
@@ -17,7 +17,7 @@ export class CarShowAllComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCars();
-    this.msg.getMessage().subscribe((data) => {
+    this.msg.getMessage().subscribe(() => {
       this.getAllCars();
     });
   }
@@ -30,8 +30,12 @@ export class CarShowAllComponent implements OnInit {
 
   remove(id){
     this.carService.deleteCar(id).subscribe((data) => {
-      this.getAllCars();
-      this.msg.setMessage('success');
+      if(data['status'] == 'done'){
+        this.getAllCars();
+        this.msg.setMessage('success');
+      }else{
+        this.msg.setMessage('error');
+      }
     });
   }
 

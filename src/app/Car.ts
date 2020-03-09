@@ -7,7 +7,6 @@ export class Car{
   price:number;
   mileage:number;
   description:string;
-  date:Date;
 
   constructor(brand, model, year, image, price, mileage, description){
     this.id = 'not set';
@@ -18,7 +17,5 @@ export class Car{
     this.price = price;
     this.mileage = mileage;
     this.description = description;
-    this.date = new Date();
-
   }
 }

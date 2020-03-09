@@ -5,7 +5,8 @@ import {
   MatButtonModule, MatCardModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
-  MatSliderModule, MatToolbarModule
+  MatSliderModule, MatToolbarModule,
+  MatGridListModule
 } from '@angular/material';
 
 @NgModule({
@@ -21,6 +22,7 @@ import {
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,
+    MatGridListModule,
   ],
   exports: [
     CommonModule,
@@ -32,7 +34,8 @@ import {
     MatToolbarModule,
     MatCardModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatGridListModule
   ]
 })
 export class AppMaterialModule { }

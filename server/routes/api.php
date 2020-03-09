@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('add', 'carController@add');
+Route::put('add', 'carController@add');
 
 Route::get('all', 'carController@all');
 

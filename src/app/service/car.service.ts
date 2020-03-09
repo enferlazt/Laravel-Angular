@@ -13,13 +13,13 @@ headers = headers.append('X-Requested-With', 'XMLHttpRequest');
 })
 export class CarService {
 
-  server:string = 'http://localhost/Laravel-Angular/server/public/';
+  server:string = 'http://localhost/Laravel-Angular/server/public/api/';
 
   constructor(private http: HttpClient) { }
 
   addCar(brand, model, year, image, price, mileage, description):Observable<Car[]> {
     const newCar = new Car(brand, model, year, image, price, mileage, description);
-    return this.http.post<Car[]>(this.server + 'add', newCar);
+    return this.http.put<Car[]>(this.server + 'add', newCar);
   }
 
   getCars():Observable<Car[]> {

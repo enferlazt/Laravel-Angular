@@ -43,7 +43,6 @@ var Car = /** @class */ (function () {
         this.price = price;
         this.mileage = mileage;
         this.description = description;
-        this.date = new Date();
     }
     return Car;
 }());
@@ -87,6 +86,7 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"],
             ],
             exports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -98,7 +98,8 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatToolbarModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"]
             ]
         })
     ], AppMaterialModule);
@@ -284,7 +285,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\r\n  <form (submit)=\"add($event)\">\r\n    <label>Enter Task Title:</label>\r\n    <mat-form-field>\r\n      <input type=\"text\" name=\"brand\" matInput placeholder=\"Brand\" [(ngModel)]=\"brand\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"text\" name=\"model\" matInput placeholder=\"Model\" [(ngModel)]=\"model\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"number\" name=\"year\" matInput placeholder=\"Year\" [(ngModel)]=\"year\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" [(ngModel)]=\"image\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"number\" name=\"price\" matInput placeholder=\"Price\" [(ngModel)]=\"price\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" [(ngModel)]=\"mileage\">\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n      <input type=\"text\" name=\"description\" matInput placeholder=\"Description\" [(ngModel)]=\"description\">\r\n    </mat-form-field>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\">Add Car</button>\r\n  </form>\r\n</mat-card>\r\n"
+module.exports = "<mat-card>\r\n  <form (submit)=\"add($event)\">\r\n    <div class=\"container\">Enter vehicle info:</div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"brand\" matInput placeholder=\"Brand\" [(ngModel)]=\"brand\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model\" [(ngModel)]=\"model\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year\" [(ngModel)]=\"year\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" [(ngModel)]=\"image\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price\" [(ngModel)]=\"price\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" [(ngModel)]=\"mileage\">\r\n      </mat-form-field>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\r\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" [(ngModel)]=\"description\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Add Car</button>\r\n  </form>\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -295,7 +296,7 @@ module.exports = "<mat-card>\r\n  <form (submit)=\"add($event)\">\r\n    <label>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItYWRkLW5ldy9jYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".container {\n  width: 100%; }\n  .container .col {\n    width: 200px;\n    padding: 0 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1hZGQtbmV3L0M6XFx4YW1wcFxcaHRkb2NzXFxMYXJhdmVsLUFuZ3VsYXIvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGNhcnNcXGNhci1hZGQtbmV3XFxjYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQVcsRUFBQTtFQURmO0lBR1EsWUFBWTtJQUNaLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItYWRkLW5ldy9jYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIC5jb2x7XHJcbiAgICAgICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDAgMTBweDtcclxuICAgIH1cclxufSJdfQ== */"
 
 /***/ }),
 
@@ -313,28 +314,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _service_car_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/car.service */ "./src/app/service/car.service.ts");
 /* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../service/message.service */ "./src/app/service/message.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
 
 var CarAddNewComponent = /** @class */ (function () {
-    function CarAddNewComponent(ts, msg) {
+    function CarAddNewComponent(ts, msg, router) {
         this.ts = ts;
         this.msg = msg;
+        this.router = router;
+        this.brand = '';
+        this.model = '';
+        this.mileage = 0;
     }
     CarAddNewComponent.prototype.ngOnInit = function () {
     };
     CarAddNewComponent.prototype.add = function (event) {
         var _this = this;
         event.preventDefault();
-        this.ts.addCar(this.brand, this.model, this.year, this.image, this.price, this.mileage, this.description)
-            .subscribe(function (data) {
-            _this.brand = '';
-            _this.model = '';
-            _this.image = '';
-            _this.description = '';
-            _this.msg.setMessage("success");
-        });
+        if (this.brand != '' && this.model != '' && this.year > 0 && this.price > 0) {
+            this.ts.addCar(this.brand, this.model, this.year, this.image, this.price, this.mileage, this.description)
+                .subscribe(function (data) {
+                if (data['status'] == "done") {
+                    _this.router.navigate(['cars']);
+                }
+                else {
+                }
+                // this.msg.setMessage("success");
+            });
+        }
     };
     CarAddNewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -342,7 +352,7 @@ var CarAddNewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./car-add-new.component.html */ "./src/app/components/cars/car-add-new/car-add-new.component.html"),
             styles: [__webpack_require__(/*! ./car-add-new.component.scss */ "./src/app/components/cars/car-add-new/car-add-new.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _service_message_service__WEBPACK_IMPORTED_MODULE_3__["MessageService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _service_message_service__WEBPACK_IMPORTED_MODULE_3__["MessageService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], CarAddNewComponent);
     return CarAddNewComponent;
 }());
@@ -358,7 +368,7 @@ var CarAddNewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" routerLink=\"/cars/add\">Add New</button>\r\n<ul class=\"cars\">\r\n  <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n    <div class=\"flex-elem\">\r\n      <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n      <div class=\"desc\">\r\n        <h3><a href=\"/car/{{id}}\">{{car.brand}} {{car.model}} {{car.year}}</a></h3>\r\n      </div>\r\n      <button color=\"warn\" (click)=\"Delete()\"><mat-icon>clear</mat-icon></button>\r\n    </div>\r\n  </li>\r\n</ul>\r\n"
+module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" routerLink=\"/cars/add\">Add New</button>\r\n<ul class=\"cars\">\r\n  <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n    <div class=\"flex-elem\">\r\n      <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n      <div class=\"desc\">\r\n        <h3><a href=\"/car/{{car.id}}\">{{car.brand}} {{car.model}} {{car.year}}</a></h3>\r\n      </div>\r\n      <button color=\"warn\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n    </div>\r\n  </li>\r\n</ul>\r\n"
 
 /***/ }),
 
@@ -402,7 +412,7 @@ var CarShowAllComponent = /** @class */ (function () {
     CarShowAllComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getAllCars();
-        this.msg.getMessage().subscribe(function (data) {
+        this.msg.getMessage().subscribe(function () {
             _this.getAllCars();
         });
     };
@@ -412,10 +422,16 @@ var CarShowAllComponent = /** @class */ (function () {
             _this.cars = all;
         });
     };
-    CarShowAllComponent.prototype.Delete = function () {
+    CarShowAllComponent.prototype.remove = function (id) {
         var _this = this;
-        this.carService.deleteCar(this.car.id).subscribe(function (data) {
-            _this.msg.setMessage('success');
+        this.carService.deleteCar(id).subscribe(function (data) {
+            if (data['status'] == 'done') {
+                _this.getAllCars();
+                _this.msg.setMessage('success');
+            }
+            else {
+                _this.msg.setMessage('error');
+            }
         });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -642,28 +658,17 @@ headers = headers.append('X-Requested-With', 'XMLHttpRequest');
 var CarService = /** @class */ (function () {
     function CarService(http) {
         this.http = http;
-        this.server = 'http://localhost/Laravel-Angular/server/public/';
+        this.server = 'http://localhost/Laravel-Angular/server/public/api/';
     }
     CarService.prototype.addCar = function (brand, model, year, image, price, mileage, description) {
         var newCar = new _Car__WEBPACK_IMPORTED_MODULE_3__["Car"](brand, model, year, image, price, mileage, description);
-        return this.http.post(this.server + 'add', newCar);
+        return this.http.put(this.server + 'add', newCar);
     };
     CarService.prototype.getCars = function () {
-        return this.http.get(this.server + 'get');
+        return this.http.get(this.server + 'all');
     };
     CarService.prototype.deleteCar = function (index) {
-        var newCar = {
-            id: index,
-            brand: 'not set',
-            model: 'not set',
-            year: 'not set',
-            image: 'not set',
-            price: 'not set',
-            mileage: 'not set',
-            description: 'not set',
-            date: new Date()
-        };
-        return this.http.post(this.server + 'delete', newCar);
+        return this.http.delete(this.server + 'delete', { params: { id: index } });
     };
     CarService.prototype.singularCar = function (index) {
         return this.http.get(this.server + 'singular', { params: { id: index } });
