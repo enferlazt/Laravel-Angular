@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Car} from "../../../Car";
 import {CarService} from "../../../service/car.service";
-import {MessageService} from "../../../service/message.service";
+import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {NotificationComponent} from '../../../components/notification/notification.component';
 
 @Component({
   selector: 'app-car-show-all',
@@ -13,15 +15,11 @@ export class CarShowAllComponent implements OnInit {
   cars : Car[] = [];
   @Input()car: Car;
 
-  constructor(private carService: CarService, private msg: MessageService) {}
+  constructor(private carService: CarService, private router: Router, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getAllCars();
-    this.msg.getMessage().subscribe(() => {
-      this.getAllCars();
-    });
   }
-
   getAllCars(){
     this.carService.getCars().subscribe((all) => {
       this.cars = all;
@@ -32,10 +30,22 @@ export class CarShowAllComponent implements OnInit {
     this.carService.deleteCar(id).subscribe((data) => {
       if(data['status'] == 'done'){
         this.getAllCars();
-        this.msg.setMessage('success');
+        this.msg('Successfully deleted', 'success-notify');
       }else{
-        this.msg.setMessage('error');
+        this.msg('Unsafe server response', 'error-notify');
       }
+    });
+  }
+
+  singular(id){
+    this.router.navigate([`car/${id}`]);
+  }
+
+  msg(message: string, panelClass: string) {
+    this.snackBar.openFromComponent(NotificationComponent, {
+      data: message,
+      panelClass: panelClass,
+      duration: 3000
     });
   }
 

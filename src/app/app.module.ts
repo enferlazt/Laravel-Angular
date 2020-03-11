@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CarAddNewComponent } from './components/cars/car-add-new/car-add-new.component';
 import { CarShowAllComponent } from './components/cars/car-show-all/car-show-all.component';
 import { CarSingleComponent } from './components/cars/car-single/car-single.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CarSingleComponent } from './components/cars/car-single/car-single.comp
     CarAddNewComponent,
     CarShowAllComponent,
     CarSingleComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { CarSingleComponent } from './components/cars/car-single/car-single.comp
     AppMaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NotificationComponent],
 })
 export class AppModule { }

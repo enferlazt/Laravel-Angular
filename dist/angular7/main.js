@@ -87,6 +87,7 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"],
             ],
             exports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -99,7 +100,8 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"]
             ]
         })
     ], AppMaterialModule);
@@ -232,6 +234,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cars_car_add_new_car_add_new_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/cars/car-add-new/car-add-new.component */ "./src/app/components/cars/car-add-new/car-add-new.component.ts");
 /* harmony import */ var _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/cars/car-show-all/car-show-all.component */ "./src/app/components/cars/car-show-all/car-show-all.component.ts");
 /* harmony import */ var _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/cars/car-single/car-single.component */ "./src/app/components/cars/car-single/car-single.component.ts");
+/* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+
 
 
 
@@ -258,6 +262,7 @@ var AppModule = /** @class */ (function () {
                 _components_cars_car_add_new_car_add_new_component__WEBPACK_IMPORTED_MODULE_11__["CarAddNewComponent"],
                 _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_12__["CarShowAllComponent"],
                 _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__["CarSingleComponent"],
+                _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__["NotificationComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -268,7 +273,8 @@ var AppModule = /** @class */ (function () {
                 _app_material_app_material_module__WEBPACK_IMPORTED_MODULE_9__["AppMaterialModule"],
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]],
+            entryComponents: [_components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__["NotificationComponent"]],
         })
     ], AppModule);
     return AppModule;
@@ -313,24 +319,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _service_car_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/car.service */ "./src/app/service/car.service.ts");
-/* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../service/message.service */ "./src/app/service/message.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+
 
 
 
 
 
 var CarAddNewComponent = /** @class */ (function () {
-    function CarAddNewComponent(ts, msg, router) {
+    function CarAddNewComponent(ts, router, snackBar) {
         this.ts = ts;
-        this.msg = msg;
         this.router = router;
+        this.snackBar = snackBar;
         this.brand = '';
         this.model = '';
         this.mileage = 0;
     }
-    CarAddNewComponent.prototype.ngOnInit = function () {
-    };
     CarAddNewComponent.prototype.add = function (event) {
         var _this = this;
         event.preventDefault();
@@ -338,13 +344,24 @@ var CarAddNewComponent = /** @class */ (function () {
             this.ts.addCar(this.brand, this.model, this.year, this.image, this.price, this.mileage, this.description)
                 .subscribe(function (data) {
                 if (data['status'] == "done") {
+                    _this.msg('Successfully added', 'success-notify');
                     _this.router.navigate(['cars']);
                 }
                 else {
+                    _this.msg('Unsafe server response', 'error-notify');
                 }
-                // this.msg.setMessage("success");
             });
         }
+        else {
+            this.msg('Fill in the require fields', 'error-notify');
+        }
+    };
+    CarAddNewComponent.prototype.msg = function (message, panelClass) {
+        this.snackBar.openFromComponent(_components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__["NotificationComponent"], {
+            data: message,
+            panelClass: panelClass,
+            duration: 3000
+        });
     };
     CarAddNewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -352,7 +369,7 @@ var CarAddNewComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./car-add-new.component.html */ "./src/app/components/cars/car-add-new/car-add-new.component.html"),
             styles: [__webpack_require__(/*! ./car-add-new.component.scss */ "./src/app/components/cars/car-add-new/car-add-new.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _service_message_service__WEBPACK_IMPORTED_MODULE_3__["MessageService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
     ], CarAddNewComponent);
     return CarAddNewComponent;
 }());
@@ -368,7 +385,7 @@ var CarAddNewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" routerLink=\"/cars/add\">Add New</button>\r\n<ul class=\"cars\">\r\n  <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n    <div class=\"flex-elem\">\r\n      <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n      <div class=\"desc\">\r\n        <h3><a href=\"/car/{{car.id}}\">{{car.brand}} {{car.model}} {{car.year}}</a></h3>\r\n      </div>\r\n      <button color=\"warn\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n    </div>\r\n  </li>\r\n</ul>\r\n"
+module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" routerLink=\"/cars/add\">Add New</button>\r\n<ul class=\"cars\">\r\n  <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n    <div class=\"flex-elem\" (click)=\"singular(car.id)\">\r\n      <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n      <div class=\"content\">\r\n        <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>\r\n      </div>\r\n    </div>\r\n    <button color=\"warn\" class=\"remove-car\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n  </li>\r\n</ul>\r\n"
 
 /***/ }),
 
@@ -379,7 +396,7 @@ module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".add_new {\n  float: right; }\n\nli {\n  list-style-type: none; }\n\n.cars {\n  padding: 0;\n  margin-top: 54px; }\n\nli.section {\n  margin: 15px 10px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #f7f7f7; }\n\nli.section .flex-elem {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap; }\n\nli.section .flex-elem .image img, li.section .flex-elem .desc {\n      display: inline-flex;\n      color: black;\n      padding: 15px; }\n\nli.section .flex-elem .image {\n      max-width: 100%;\n      max-height: 100%;\n      height: 100%;\n      width: 150px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .desc {\n      height: 150px;\n      width: 100%;\n      flex: 1 300px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem button {\n      position: absolute;\n      height: 18px;\n      width: 18px;\n      border-radius: 15px;\n      background: #e10000;\n      border: none;\n      padding: 0;\n      right: 0;\n      margin-right: 38px; }\n\nli.section .flex-elem button mat-icon {\n        color: white;\n        padding: 1px 5.5px 0 0;\n        font-size: 16px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zaG93LWFsbC9DOlxceGFtcHBcXGh0ZG9jc1xcTGFyYXZlbC1Bbmd1bGFyL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYXJzXFxjYXItc2hvdy1hbGxcXGNhci1zaG93LWFsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLHFCQUFxQixFQUFBOztBQUV2QjtFQUNFLFVBQVU7RUFDVixnQkFBZ0IsRUFBQTs7QUFFbEI7RUFDRSxpQkFBaUI7RUFDakIsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixtQkFBbUIsRUFBQTs7QUFKckI7SUFPSSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLGVBQWUsRUFBQTs7QUFUbkI7TUFZTSxvQkFBb0I7TUFDcEIsWUFBWTtNQUNaLGFBQWEsRUFBQTs7QUFkbkI7TUFrQk0sZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixZQUFZO01BQ1osWUFBWTtNQUNaLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUF2QnhCO01BMkJNLGFBQWE7TUFDYixXQUFXO01BQ1gsYUFBYTtNQUNiLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUEvQnhCO01BbUNNLGtCQUFrQjtNQUNsQixZQUFZO01BQ1osV0FBVztNQUNYLG1CQUFtQjtNQUNuQixtQkFBbUI7TUFDbkIsWUFBWTtNQUNaLFVBQVU7TUFDVixRQUFRO01BQ1Isa0JBQWtCLEVBQUE7O0FBM0N4QjtRQThDUSxZQUFZO1FBQ1osc0JBQXNCO1FBQ3RCLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItc2hvdy1hbGwvY2FyLXNob3ctYWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFkZF9uZXd7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG59XHJcblxyXG5saXtcclxuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XHJcbn1cclxuLmNhcnN7XHJcbiAgcGFkZGluZzogMDtcclxuICBtYXJnaW4tdG9wOiA1NHB4O1xyXG59XHJcbmxpLnNlY3Rpb257XHJcbiAgbWFyZ2luOiAxNXB4IDEwcHg7XHJcbiAgcGFkZGluZzogMTVweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgYmFja2dyb3VuZDogI2Y3ZjdmNztcclxuXHJcbiAgLmZsZXgtZWxlbXtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAgZmxleC13cmFwOiB3cmFwO1xyXG5cclxuICAgIC5pbWFnZSBpbWcsIC5kZXNje1xyXG4gICAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICAgICAgY29sb3I6IGJsYWNrO1xyXG4gICAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5pbWFnZXtcclxuICAgICAgbWF4LXdpZHRoOiAxMDAlO1xyXG4gICAgICBtYXgtaGVpZ2h0OiAxMDAlO1xyXG4gICAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICAgIHdpZHRoOiAxNTBweDtcclxuICAgICAgbWFyZ2luOiAxMHB4O1xyXG4gICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgICB9XHJcblxyXG4gICAgLmRlc2N7XHJcbiAgICAgIGhlaWdodDogMTUwcHg7XHJcbiAgICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgICBmbGV4OiAxIDMwMHB4O1xyXG4gICAgICBtYXJnaW46IDEwcHg7XHJcbiAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICAgIH1cclxuXHJcbiAgICBidXR0b257XHJcbiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgaGVpZ2h0OiAxOHB4O1xyXG4gICAgICB3aWR0aDogMThweDtcclxuICAgICAgYm9yZGVyLXJhZGl1czogMTVweDtcclxuICAgICAgYmFja2dyb3VuZDogI2UxMDAwMDtcclxuICAgICAgYm9yZGVyOiBub25lO1xyXG4gICAgICBwYWRkaW5nOiAwO1xyXG4gICAgICByaWdodDogMDtcclxuICAgICAgbWFyZ2luLXJpZ2h0OiAzOHB4O1xyXG5cclxuICAgICAgbWF0LWljb257XHJcbiAgICAgICAgY29sb3I6IHdoaXRlO1xyXG4gICAgICAgIHBhZGRpbmc6IDFweCA1LjVweCAwIDA7XHJcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xyXG4gICAgICB9XHJcbiAgICB9XHJcblxyXG4gIH1cclxufVxyXG5cclxuIl19 */"
+module.exports = ".add_new {\n  float: right; }\n\nli {\n  list-style-type: none; }\n\n.cars {\n  padding: 0;\n  margin-top: 54px; }\n\nli.section {\n  margin: 15px 10px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #f7f7f7;\n  position: relative; }\n\nli.section .flex-elem {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    cursor: pointer; }\n\nli.section .flex-elem .image img, li.section .flex-elem .desc {\n      display: inline-flex;\n      color: black;\n      padding: 15px; }\n\nli.section .flex-elem .image {\n      max-width: 100%;\n      max-height: 100%;\n      height: 100%;\n      width: 150px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content {\n      height: 150px;\n      width: 100%;\n      flex: 1 300px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content h3 {\n        margin: 0;\n        margin-bottom: 10px;\n        color: #3f51b5; }\n\nbutton.remove-car {\n  position: absolute;\n  margin: -4px;\n  height: 28px;\n  width: 28px;\n  border-radius: 15px;\n  background: crimson;\n  border: none;\n  padding: 0;\n  right: 0;\n  top: 0;\n  cursor: pointer; }\n\nbutton.remove-car:hover {\n    background: red; }\n\nbutton.remove-car mat-icon {\n    color: white;\n    padding-top: 2px;\n    font-size: 20px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zaG93LWFsbC9DOlxceGFtcHBcXGh0ZG9jc1xcTGFyYXZlbC1Bbmd1bGFyL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYXJzXFxjYXItc2hvdy1hbGxcXGNhci1zaG93LWFsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLHFCQUFxQixFQUFBOztBQUV2QjtFQUNFLFVBQVU7RUFDVixnQkFBZ0IsRUFBQTs7QUFFbEI7RUFDRSxpQkFBaUI7RUFDakIsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsa0JBQWtCLEVBQUE7O0FBTHBCO0lBUUksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZUFBZSxFQUFBOztBQVhuQjtNQWNNLG9CQUFvQjtNQUNwQixZQUFZO01BQ1osYUFBYSxFQUFBOztBQWhCbkI7TUFvQk0sZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixZQUFZO01BQ1osWUFBWTtNQUNaLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUF6QnhCO01BNkJNLGFBQWE7TUFDYixXQUFXO01BQ1gsYUFBYTtNQUNiLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUFqQ3hCO1FBb0NRLFNBQVM7UUFDVCxtQkFBbUI7UUFDbkIsY0FBYyxFQUFBOztBQU10QjtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osWUFBWTtFQUNaLFdBQVc7RUFDWCxtQkFBbUI7RUFDbkIsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixVQUFVO0VBQ1YsUUFBUTtFQUNSLE1BQU07RUFDTixlQUFlLEVBQUE7O0FBWGpCO0lBY0ksZUFBZSxFQUFBOztBQWRuQjtJQWtCSSxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItc2hvdy1hbGwvY2FyLXNob3ctYWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFkZF9uZXd7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG59XHJcblxyXG5saXtcclxuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XHJcbn1cclxuLmNhcnN7XHJcbiAgcGFkZGluZzogMDtcclxuICBtYXJnaW4tdG9wOiA1NHB4O1xyXG59XHJcbmxpLnNlY3Rpb257XHJcbiAgbWFyZ2luOiAxNXB4IDEwcHg7XHJcbiAgcGFkZGluZzogMTVweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgYmFja2dyb3VuZDogI2Y3ZjdmNztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcblxyXG4gIC5mbGV4LWVsZW17XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAuaW1hZ2UgaW1nLCAuZGVzY3tcclxuICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgICAgIGNvbG9yOiBibGFjaztcclxuICAgICAgcGFkZGluZzogMTVweDtcclxuICAgIH1cclxuXHJcbiAgICAuaW1hZ2V7XHJcbiAgICAgIG1heC13aWR0aDogMTAwJTtcclxuICAgICAgbWF4LWhlaWdodDogMTAwJTtcclxuICAgICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgICB3aWR0aDogMTUwcHg7XHJcbiAgICAgIG1hcmdpbjogMTBweDtcclxuICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5jb250ZW50e1xyXG4gICAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgZmxleDogMSAzMDBweDtcclxuICAgICAgbWFyZ2luOiAxMHB4O1xyXG4gICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcblxyXG4gICAgICBoM3tcclxuICAgICAgICBtYXJnaW46IDA7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgICAgICBjb2xvcjogIzNmNTFiNTtcclxuICAgICAgfVxyXG4gICAgfVxyXG5cclxuICB9XHJcbn1cclxuYnV0dG9uLnJlbW92ZS1jYXJ7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIG1hcmdpbjogLTRweDtcclxuICBoZWlnaHQ6IDI4cHg7XHJcbiAgd2lkdGg6IDI4cHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcclxuICBiYWNrZ3JvdW5kOiBjcmltc29uO1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBwYWRkaW5nOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHRvcDogMDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcblxyXG4gICY6aG92ZXJ7XHJcbiAgICBiYWNrZ3JvdW5kOiByZWQ7XHJcbiAgfVxyXG5cclxuICBtYXQtaWNvbntcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIHBhZGRpbmctdG9wOiAycHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -397,24 +414,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _Car__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Car */ "./src/app/Car.ts");
 /* harmony import */ var _service_car_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../service/car.service */ "./src/app/service/car.service.ts");
-/* harmony import */ var _service_message_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../service/message.service */ "./src/app/service/message.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+
+
 
 
 
 
 
 var CarShowAllComponent = /** @class */ (function () {
-    function CarShowAllComponent(carService, msg) {
+    function CarShowAllComponent(carService, router, snackBar) {
         this.carService = carService;
-        this.msg = msg;
+        this.router = router;
+        this.snackBar = snackBar;
         this.cars = [];
     }
     CarShowAllComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.getAllCars();
-        this.msg.getMessage().subscribe(function () {
-            _this.getAllCars();
-        });
     };
     CarShowAllComponent.prototype.getAllCars = function () {
         var _this = this;
@@ -427,11 +445,21 @@ var CarShowAllComponent = /** @class */ (function () {
         this.carService.deleteCar(id).subscribe(function (data) {
             if (data['status'] == 'done') {
                 _this.getAllCars();
-                _this.msg.setMessage('success');
+                _this.msg('Successfully deleted', 'success-notify');
             }
             else {
-                _this.msg.setMessage('error');
+                _this.msg('Unsafe server response', 'error-notify');
             }
+        });
+    };
+    CarShowAllComponent.prototype.singular = function (id) {
+        this.router.navigate(["car/" + id]);
+    };
+    CarShowAllComponent.prototype.msg = function (message, panelClass) {
+        this.snackBar.openFromComponent(_components_notification_notification_component__WEBPACK_IMPORTED_MODULE_6__["NotificationComponent"], {
+            data: message,
+            panelClass: panelClass,
+            duration: 3000
         });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -444,7 +472,7 @@ var CarShowAllComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./car-show-all.component.html */ "./src/app/components/cars/car-show-all/car-show-all.component.html"),
             styles: [__webpack_require__(/*! ./car-show-all.component.scss */ "./src/app/components/cars/car-show-all/car-show-all.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_3__["CarService"], _service_message_service__WEBPACK_IMPORTED_MODULE_4__["MessageService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_3__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_5__["MatSnackBar"]])
     ], CarShowAllComponent);
     return CarShowAllComponent;
 }());
@@ -633,6 +661,65 @@ var HeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/notification/notification.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/notification/notification.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"flex\">\n  <div class=\"data\">{{data}}</div>\n  <div class=\"dismiss\">\n    <button mat-icon-button (click)=\"snackBarRef.dismiss()\">\n      <mat-icon>close</mat-icon>\n    </button>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/components/notification/notification.component.scss":
+/*!*********************************************************************!*\
+  !*** ./src/app/components/notification/notification.component.scss ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".flex {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9ub3RpZmljYXRpb24vQzpcXHhhbXBwXFxodGRvY3NcXExhcmF2ZWwtQW5ndWxhci9zcmNcXGFwcFxcY29tcG9uZW50c1xcbm90aWZpY2F0aW9uXFxub3RpZmljYXRpb24uY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxhQUFhO0VBQ2IscUJBQXFCO0VBQ3JCLDhCQUE4QixFQUFBIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9ub3RpZmljYXRpb24vbm90aWZpY2F0aW9uLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmZsZXgge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGFsaWduLWl0ZW1zOiBiYXNlbGluZTtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/notification/notification.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/components/notification/notification.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: NotificationComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationComponent", function() { return NotificationComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
+
+var NotificationComponent = /** @class */ (function () {
+    function NotificationComponent(snackBarRef, data) {
+        this.snackBarRef = snackBarRef;
+        this.data = data;
+    }
+    NotificationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-notification',
+            template: __webpack_require__(/*! ./notification.component.html */ "./src/app/components/notification/notification.component.html"),
+            styles: [__webpack_require__(/*! ./notification.component.scss */ "./src/app/components/notification/notification.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_SNACK_BAR_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBarRef"], Object])
+    ], NotificationComponent);
+    return NotificationComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/service/car.service.ts":
 /*!****************************************!*\
   !*** ./src/app/service/car.service.ts ***!
@@ -680,45 +767,6 @@ var CarService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], CarService);
     return CarService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/message.service.ts":
-/*!********************************************!*\
-  !*** ./src/app/service/message.service.ts ***!
-  \********************************************/
-/*! exports provided: MessageService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MessageService", function() { return MessageService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-
-
-
-var MessageService = /** @class */ (function () {
-    function MessageService() {
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-    }
-    MessageService.prototype.setMessage = function (msg) {
-        this.subject.next(msg);
-    };
-    MessageService.prototype.getMessage = function () {
-        return this.subject.asObservable();
-    };
-    MessageService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], MessageService);
-    return MessageService;
 }());
 
 

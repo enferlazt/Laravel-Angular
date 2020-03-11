@@ -14,11 +14,13 @@ li.section{
   padding: 15px;
   border-radius: 5px;
   background: #f7f7f7;
+  position: relative;
 
   .flex-elem{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    cursor: pointer;
 
     .image img, .desc{
       display: inline-flex;
@@ -35,32 +37,42 @@ li.section{
       border-radius: 5px;
     }
 
-    .desc{
+    .content{
       height: 150px;
       width: 100%;
       flex: 1 300px;
       margin: 10px;
       border-radius: 5px;
-    }
 
-    button{
-      position: absolute;
-      height: 18px;
-      width: 18px;
-      border-radius: 15px;
-      background: #e10000;
-      border: none;
-      padding: 0;
-      right: 0;
-      margin-right: 38px;
-
-      mat-icon{
-        color: white;
-        padding: 1px 5.5px 0 0;
-        font-size: 16px;
+      h3{
+        margin: 0;
+        margin-bottom: 10px;
+        color: #3f51b5;
       }
     }
 
   }
 }
+button.remove-car{
+  position: absolute;
+  margin: -4px;
+  height: 28px;
+  width: 28px;
+  border-radius: 15px;
+  background: crimson;
+  border: none;
+  padding: 0;
+  right: 0;
+  top: 0;
+  cursor: pointer;
 
+  &:hover{
+    background: red;
+  }
+
+  mat-icon{
+    color: white;
+    padding-top: 2px;
+    font-size: 20px;
+  }
+}

@@ -1,8 +1,26 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 *{
   box-sizing: border-box;
 }
+
 body{
   color: #fff;
   background: #eaeaea;
+}
+
+:focus {
+  outline: none !important;
+}
+
+.error-notify {
+  background-color: crimson;
+  font-size: 18px;
+  color: white;
+}
+
+.success-notify {
+  background-color: mediumseagreen;
+  font-size: 18px;
+  color: white;
 }

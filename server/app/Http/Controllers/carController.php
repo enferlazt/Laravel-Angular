@@ -37,7 +37,7 @@ class carController extends Controller
         //     $car->description = $request->description;
         // }
 
-        // $car->save();
+        $car->save();
 
         return [
             'status' => 'done',
