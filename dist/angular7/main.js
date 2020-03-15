@@ -265,9 +265,9 @@ var AppModule = /** @class */ (function () {
                 _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__["NotificationComponent"],
             ],
             imports: [
+                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_7__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
                 _app_material_app_material_module__WEBPACK_IMPORTED_MODULE_9__["AppMaterialModule"],
@@ -291,7 +291,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\r\n  <form (submit)=\"add($event)\">\r\n    <div class=\"container\">Enter vehicle info:</div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"brand\" matInput placeholder=\"Brand\" [(ngModel)]=\"brand\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model\" [(ngModel)]=\"model\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year\" [(ngModel)]=\"year\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" [(ngModel)]=\"image\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price\" [(ngModel)]=\"price\" required>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" [(ngModel)]=\"mileage\">\r\n      </mat-form-field>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\r\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" [(ngModel)]=\"description\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Add Car</button>\r\n  </form>\r\n</mat-card>\r\n"
+module.exports = "<mat-card>\r\n  <form [formGroup]=\"addForm\" (submit)=\"add($event)\">\r\n    <div class=\"container\">Enter vehicle info:</div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\"\r\n              matInput\r\n              placeholder=\"Brand *\"\r\n              formControlName=\"brand\"\r\n              [matAutocomplete]=\"autoBrand\">\r\n          <mat-autocomplete #autoBrand=\"matAutocomplete\">\r\n            <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\r\n              <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\r\n                {{name}}\r\n              </mat-option>\r\n          </mat-optgroup>\r\n        </mat-autocomplete>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\r\n      </mat-form-field>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\r\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Add Car</button>\r\n  </form>\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -310,11 +310,12 @@ module.exports = ".container {\n  width: 100%; }\n  .container .col {\n    width
 /*!**********************************************************************!*\
   !*** ./src/app/components/cars/car-add-new/car-add-new.component.ts ***!
   \**********************************************************************/
-/*! exports provided: CarAddNewComponent */
+/*! exports provided: _filter, CarAddNewComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_filter", function() { return _filter; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarAddNewComponent", function() { return CarAddNewComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
@@ -322,26 +323,153 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
 /* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
 
 
 
 
 
+
+
+function autocompleteValidator(validOptions) {
+    return function (control) {
+        for (var elem in validOptions) {
+            if (validOptions[elem]['names'].indexOf(control.value) !== -1) {
+                return null;
+            }
+        }
+        return { 'invalidAutocomplete': { value: control.value } };
+    };
+}
+function yearValidator() {
+    return function (control) {
+        var current = new Date().getFullYear();
+        if (control.value != null && control.value >= '1920' && control.value <= current) {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+function numberValidator() {
+    return function (control) {
+        if (control.value != null && control.value > '0') {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+function srtingValidator() {
+    return function (control) {
+        if (control.value != null && control.value.length > 0) {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+var _filter = function (opt, value) {
+    var filterValue = value.toLowerCase();
+    return opt.filter(function (item) { return item.toLowerCase().indexOf(filterValue) === 0; });
+};
 var CarAddNewComponent = /** @class */ (function () {
     function CarAddNewComponent(ts, router, snackBar) {
         this.ts = ts;
         this.router = router;
         this.snackBar = snackBar;
-        this.brand = '';
-        this.model = '';
-        this.mileage = 0;
+        this.brandList = [{
+                letter: 'A',
+                names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
+            }, {
+                letter: 'B',
+                names: ['Bentley', 'BMW', 'Bowler', 'Bugatti', 'Buick']
+            }, {
+                letter: 'C',
+                names: ['Cadillac', 'Caterham', 'Chery', 'Chevrolet', 'Chrysler', 'Citroen', 'Corvette']
+            }, {
+                letter: 'D',
+                names: ['Dacia', 'Daihatsu', 'Datsun', 'Dodge', 'DS']
+            }, {
+                letter: 'F',
+                names: ['Ferrari', 'Fiat', 'Fisker', 'Ford']
+            }, {
+                letter: 'G',
+                names: ['Ginetta', 'GMC']
+            }, {
+                letter: 'H',
+                names: ['Holden', 'Honda', 'Hyundai']
+            }, {
+                letter: 'I',
+                names: ['Infiniti', 'Isuzu']
+            }, {
+                letter: 'J',
+                names: ['Jaguar', 'Jeep']
+            }, {
+                letter: 'K',
+                names: ['Kia', 'Koenigsegg']
+            }, {
+                letter: 'L',
+                names: ['Lamborghini', 'Lancia', 'Land Rover', 'Lexus', 'Lincoln', 'Lister', 'Lotus']
+            }, {
+                letter: 'M',
+                names: ['Mahindra & Mahindra', 'Maserati', 'Mastretta', 'Mazda', 'McLaren', 'Mercedes-Benz', 'MG', 'Mini', 'Mitsubishi']
+            }, {
+                letter: 'N',
+                names: ['Nissan', 'Noble']
+            }, {
+                letter: 'O',
+                names: ['Opel']
+            }, {
+                letter: 'P',
+                names: ['Pagani', 'Perodua', 'Peugeot', 'Porsche', 'Proton']
+            }, {
+                letter: 'R',
+                names: ['Ram', 'Renault', 'Roewe', 'Rolls-Royce', 'RUF']
+            }, {
+                letter: 'S',
+                names: ['Saab', 'Saleen', 'Scion', 'Seat', 'Skoda', 'Smart', 'SsangYong', 'Subaru', 'Suzuki']
+            }, {
+                letter: 'T',
+                names: ['Tata', 'Tesla', 'Toyota', 'TVR']
+            }, {
+                letter: 'V',
+                names: ['Vauxhall', 'Venturi', 'Volkswagen', 'Volvo']
+            }, {
+                letter: 'W',
+                names: ['Wiesmann']
+            }, {
+                letter: 'Z',
+                names: ['Zenvo']
+            }];
+        this.addForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormGroup"]({
+            brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [autocompleteValidator(this.brandList), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            model: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [srtingValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            year: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [yearValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            image: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
+            price: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [numberValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            mileage: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](0),
+            description: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('')
+        });
     }
+    CarAddNewComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        console.warn(this.addForm);
+        this.brandListOptions = this.addForm.controls.brand.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filterGroup(value); }));
+    };
+    CarAddNewComponent.prototype._filterGroup = function (value) {
+        if (value) {
+            return this.brandList
+                .map(function (group) { return ({ letter: group.letter, names: _filter(group.names, value) }); })
+                .filter(function (group) { return group.names.length > 0; });
+        }
+        return this.brandList;
+    };
     CarAddNewComponent.prototype.add = function (event) {
         var _this = this;
         event.preventDefault();
-        if (this.brand != '' && this.model != '' && this.year > 0 && this.price > 0) {
-            this.ts.addCar(this.brand, this.model, this.year, this.image, this.price, this.mileage, this.description)
+        if (this.addForm.controls.brand.valid && this.addForm.controls.model.valid && this.addForm.controls.year.valid && this.addForm.controls.price.valid) {
+            this.ts.addCar(this.addForm.controls.brand.value, this.addForm.controls.model.value, this.addForm.controls.year.value, this.addForm.controls.image.value, this.addForm.controls.price.value, this.addForm.controls.mileage.value, this.addForm.controls.description.value)
                 .subscribe(function (data) {
                 if (data['status'] == "done") {
                     _this.msg('Successfully added', 'success-notify');
