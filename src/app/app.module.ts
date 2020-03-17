@@ -13,6 +13,7 @@ import { CarAddNewComponent } from './components/cars/car-add-new/car-add-new.co
 import { CarShowAllComponent } from './components/cars/car-show-all/car-show-all.component';
 import { CarSingleComponent } from './components/cars/car-single/car-single.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { CarSearchComponent } from './components/cars/car-search/car-search.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NotificationComponent } from './components/notification/notification.co
     CarShowAllComponent,
     CarSingleComponent,
     NotificationComponent,
+    CarSearchComponent,
   ],
   imports: [
     ReactiveFormsModule,

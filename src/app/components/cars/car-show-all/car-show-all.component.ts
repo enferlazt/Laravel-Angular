@@ -13,23 +13,39 @@ import {NotificationComponent} from '../../../components/notification/notificati
 export class CarShowAllComponent implements OnInit {
   
   cars : Car[] = [];
-  @Input()car: Car;
+  @Input() car: Car;
+  lastRequest: object = {};
 
-  constructor(private carService: CarService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(private ts: CarService, private router: Router, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.getAllCars();
+    this.lastRequest = this.ts.shared_value;
+    this.getAllCars(this.lastRequest);
   }
-  getAllCars(){
-    this.carService.getCars().subscribe((all) => {
+
+  getAllCars(params){
+    for(let item in params){
+      if(params[item] == null){
+        params[item] = '';
+      }
+    }
+    this.ts.getCars(
+      params.brand,
+      params.model,
+      params.yearMin,
+      params.yearMax,
+      params.priceMin,
+      params.priceMax,
+      params.mileageMin,
+      params.mileageMax).subscribe((all) => {
       this.cars = all;
     });
   }
 
   remove(id){
-    this.carService.deleteCar(id).subscribe((data) => {
+    this.ts.deleteCar(id).subscribe((data) => {
       if(data['status'] == 'done'){
-        this.getAllCars();
+        this.getAllCars(this.lastRequest);
         this.msg('Successfully deleted', 'success-notify');
       }else{
         this.msg('Unsafe server response', 'error-notify');

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Car } from '../Car';
 import {Observable} from "rxjs";
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 let headers: HttpHeaders = new HttpHeaders();
 headers = headers.append('enctype', 'multipart/form-data');
@@ -13,17 +14,36 @@ headers = headers.append('X-Requested-With', 'XMLHttpRequest');
 })
 export class CarService {
 
-  server:string = 'http://localhost/Laravel-Angular/server/public/api/';
+  server: string = 'http://localhost/Laravel-Angular/server/public/api/';
+  shared_value: object;
+  to_component = new BehaviorSubject<object>({});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.shared_value;
+    this.to_component.next(this.shared_value);
+  }
+  
+  sharedGetAll(val) {
+    this.shared_value = val;
+    this.to_component.next(this.shared_value);
+  }
 
   addCar(brand, model, year, image, price, mileage, description):Observable<Car[]> {
     const newCar = new Car(brand, model, year, image, price, mileage, description);
     return this.http.put<Car[]>(this.server + 'add', newCar);
   }
 
-  getCars():Observable<Car[]> {
-    return this.http.get<Car[]>(this.server + 'all');
+  getCars(brand, model, yearMin, yearMax, priceMin, priceMax, mileageMin, mileageMax):Observable<Car[]> {
+    return this.http.get<Car[]>(this.server + 'all', {params: {
+      brand,
+      model,
+      yearMin,
+      yearMax,
+      priceMin,
+      priceMax,
+      mileageMin,
+      mileageMax
+    }});
   }
 
   deleteCar(index):Observable<{}> {

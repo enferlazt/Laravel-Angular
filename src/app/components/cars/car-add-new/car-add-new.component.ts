@@ -3,10 +3,9 @@ import {CarService} from "../../../service/car.service";
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {NotificationComponent} from '../../../components/notification/notification.component';
-import {ValidatorFn, Validators, AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {ValidatorFn, Validators, AbstractControl, FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
-
 
 export interface BrandList {
   letter: string;
@@ -129,22 +128,21 @@ export class CarAddNewComponent implements OnInit {
     names: ['Zenvo']
   }];
 
-  addForm:FormGroup = new FormGroup({
+  addForm: FormGroup = this._formBuilder.group({
     brand: new FormControl('', { validators: [autocompleteValidator(this.brandList), Validators.required] }),
     model: new FormControl('', { validators: [srtingValidator(), Validators.required] }),
     year: new FormControl('', { validators: [yearValidator(), Validators.required] }),
-    image: new FormControl(''),
+    image: '',
     price: new FormControl('', { validators: [numberValidator(), Validators.required] }),
-    mileage: new FormControl(0),
-    description: new FormControl('')
+    mileage: 0,
+    description: ''
   });
 
   brandListOptions: Observable<BrandList[]>;
 
-  constructor(private ts:CarService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private ts: CarService, private router: Router, private snackBar: MatSnackBar, private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.warn(this.addForm);
     this.brandListOptions = this.addForm.controls.brand.valueChanges
       .pipe(
         startWith(''),
@@ -191,5 +189,9 @@ export class CarAddNewComponent implements OnInit {
       panelClass: panelClass,
       duration: 3000
     });
+  }
+
+  back(){
+    this.router.navigate(['cars']);
   }
 }

@@ -44,8 +44,52 @@ class carController extends Controller
         ];
     }
 
-    function all(){
-        $records = car::all();
+    function all(Request $request){
+        $records = car::query();
+        $brand = $request->brand;
+        $model = $request->model;
+        $yearMin = $request->yearMin;
+        $yearMax = $request->yearMax;
+        $priceMin = $request->priceMin;
+        $priceMax = $request->priceMax;
+        $mileageMin = $request->mileageMin;
+        $mileageMax = $request->mileageMax;
+        if(!empty($brand)){
+            $records = $records->where('brand', 'like', '%'.$brand.'%');
+        }
+        if(!empty($model)){
+            $records = $records->where('model', 'like', '%'.$model.'%');
+        }
+        if($yearMin !== null || $yearMax !== null){
+            if($yearMin == null){
+                $yearMin = $records->min('year');
+            }
+            if($yearMax == null){
+                $yearMax = $records->max('year');
+            }
+            $records = $records->whereBetween('year', [$yearMin, $yearMax]);
+        }
+        if($priceMin !== null || $priceMax !== null){
+            if($priceMin == null){
+                $priceMin = $records->min('price');
+            }
+            if($priceMax == null){
+                $priceMax = $records->max('price');
+            }
+            $records = $records->whereBetween('price', [$priceMin, $priceMax]);
+        }
+        if($mileageMin !== null || $mileageMax !== null){
+            if($mileageMin == null){
+                $mileageMin = $records->min('mileage');
+            }
+            if($mileageMax == null){
+                $mileageMax = $records->max('mileage');
+            }
+            $records = $records->whereBetween('mileage', [$mileageMin, $mileageMax]);
+        }
+        
+        $records = $records->get();
+        
         return response()->json($records);
     }
 

@@ -1,0 +1,41 @@
+<form [formGroup]="searchForm" (submit)="apply($event)">
+  <div class="row">
+    <h3>Search form:</h3>
+  </div>
+  <mat-form-field class="row">
+    <input type="text"
+          matInput
+          placeholder="Brand"
+          formControlName="brand"
+          [matAutocomplete]="autoBrand">
+      <mat-autocomplete #autoBrand="matAutocomplete">
+        <mat-optgroup *ngFor="let elem of brandListOptions | async" [label]="elem.letter">
+          <mat-option *ngFor="let name of elem.names" [value]="name">
+            {{name}}
+          </mat-option>
+      </mat-optgroup>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="text" name="model" matInput placeholder="Model" formControlName="model">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="yearMin" matInput placeholder="Year from" formControlName="yearMin">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="yearMax" matInput placeholder="Year to" formControlName="yearMax">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="priceMin" matInput placeholder="Price from" formControlName="priceMin">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="priceMax" matInput placeholder="Price to" formControlName="priceMax">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="mileageMin" matInput placeholder="Mileage from" formControlName="mileageMin">
+  </mat-form-field>
+  <mat-form-field class="row">
+    <input type="number" name="mileageMax" matInput placeholder="Mileage to" formControlName="mileageMax">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" class="row">Apply search filter</button>
+</form>

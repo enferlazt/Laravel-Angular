@@ -163,7 +163,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header></app-header>\r\n<div class=\"flex-container\">\r\n    <mat-card class=\"flex-element first\">\r\n        Search Form\r\n    </mat-card>\r\n    <mat-card class=\"flex-element last\">\r\n        <router-outlet></router-outlet>\r\n    </mat-card>\r\n</div>\r\n<app-footer></app-footer>\r\n"
+module.exports = "<app-header></app-header>\r\n<div class=\"flex-container\">\r\n    <mat-card class=\"flex-element first\">\r\n        <app-car-search></app-car-search>\r\n    </mat-card>\r\n    <mat-card class=\"flex-element last\">\r\n        <router-outlet></router-outlet>\r\n    </mat-card>\r\n</div>\r\n<app-footer></app-footer>\r\n"
 
 /***/ }),
 
@@ -174,7 +174,7 @@ module.exports = "<app-header></app-header>\r\n<div class=\"flex-container\">\r\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".flex-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  padding: 10px;\n  border-radius: 5px;\n  margin: 0 auto; }\n  .flex-container mat-card {\n    padding: 15px;\n    margin: 5px; }\n  .flex-container .first {\n    flex: 1 300px;\n    height: 100%; }\n  .flex-container .last {\n    flex: 3 600px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXHhhbXBwXFxodGRvY3NcXExhcmF2ZWwtQW5ndWxhci9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2YsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixjQUFjLEVBQUE7RUFOaEI7SUFTSSxhQUFhO0lBQ2IsV0FBVyxFQUFBO0VBVmY7SUFjSSxhQUFhO0lBQ2IsWUFBWSxFQUFBO0VBZmhCO0lBbUJJLGFBQWEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mbGV4LWNvbnRhaW5lcntcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgZmxleC13cmFwOiB3cmFwO1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gIG1hcmdpbjogMCBhdXRvO1xyXG5cclxuICBtYXQtY2FyZHtcclxuICAgIHBhZGRpbmc6IDE1cHg7XHJcbiAgICBtYXJnaW46IDVweDtcclxuICB9XHJcblxyXG4gIC5maXJzdCB7XHJcbiAgICBmbGV4OiAxIDMwMHB4O1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gIH1cclxuXHJcbiAgLmxhc3Qge1xyXG4gICAgZmxleDogMyA2MDBweDtcclxuICB9XHJcbn1cclxuIl19 */"
+module.exports = ".flex-container {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  padding: 10px;\n  border-radius: 5px;\n  margin: 0 auto; }\n  .flex-container mat-card {\n    padding: 15px;\n    margin: 5px; }\n  .flex-container .first {\n    flex: 1 300px;\n    height: 100%; }\n  .flex-container .last {\n    flex: 3 600px;\n    height: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvQzpcXHhhbXBwXFxodGRvY3NcXExhcmF2ZWwtQW5ndWxhci9zcmNcXGFwcFxcYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixlQUFlO0VBQ2YsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixjQUFjLEVBQUE7RUFOaEI7SUFTSSxhQUFhO0lBQ2IsV0FBVyxFQUFBO0VBVmY7SUFjSSxhQUFhO0lBQ2IsWUFBWSxFQUFBO0VBZmhCO0lBbUJJLGFBQWE7SUFDYixZQUFZLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZmxleC1jb250YWluZXJ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICBtYXJnaW46IDAgYXV0bztcclxuXHJcbiAgbWF0LWNhcmR7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgbWFyZ2luOiA1cHg7XHJcbiAgfVxyXG5cclxuICAuZmlyc3Qge1xyXG4gICAgZmxleDogMSAzMDBweDtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICB9XHJcblxyXG4gIC5sYXN0IHtcclxuICAgIGZsZXg6IDMgNjAwcHg7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -235,6 +235,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/cars/car-show-all/car-show-all.component */ "./src/app/components/cars/car-show-all/car-show-all.component.ts");
 /* harmony import */ var _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/cars/car-single/car-single.component */ "./src/app/components/cars/car-single/car-single.component.ts");
 /* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+/* harmony import */ var _components_cars_car_search_car_search_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/cars/car-search/car-search.component */ "./src/app/components/cars/car-search/car-search.component.ts");
+
 
 
 
@@ -263,6 +265,7 @@ var AppModule = /** @class */ (function () {
                 _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_12__["CarShowAllComponent"],
                 _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__["CarSingleComponent"],
                 _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__["NotificationComponent"],
+                _components_cars_car_search_car_search_component__WEBPACK_IMPORTED_MODULE_15__["CarSearchComponent"],
             ],
             imports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
@@ -291,7 +294,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\r\n  <form [formGroup]=\"addForm\" (submit)=\"add($event)\">\r\n    <div class=\"container\">Enter vehicle info:</div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\"\r\n              matInput\r\n              placeholder=\"Brand *\"\r\n              formControlName=\"brand\"\r\n              [matAutocomplete]=\"autoBrand\">\r\n          <mat-autocomplete #autoBrand=\"matAutocomplete\">\r\n            <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\r\n              <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\r\n                {{name}}\r\n              </mat-option>\r\n          </mat-optgroup>\r\n        </mat-autocomplete>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\r\n      </mat-form-field>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\r\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Add Car</button>\r\n  </form>\r\n</mat-card>\r\n"
+module.exports = "<mat-card>\r\n  <form [formGroup]=\"addForm\" (submit)=\"add($event)\">\r\n    <div class=\"container\">\r\n      <h3>Enter vehicle info:</h3>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\"\r\n              matInput\r\n              placeholder=\"Brand *\"\r\n              formControlName=\"brand\"\r\n              [matAutocomplete]=\"autoBrand\">\r\n          <mat-autocomplete #autoBrand=\"matAutocomplete\">\r\n            <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\r\n              <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\r\n                {{name}}\r\n              </mat-option>\r\n          </mat-optgroup>\r\n        </mat-autocomplete>\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\r\n      </mat-form-field>\r\n      <mat-form-field class=\"col\">\r\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\r\n      </mat-form-field>\r\n    </div>\r\n    <div class=\"container\">\r\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\r\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\r\n      </mat-form-field>\r\n    </div>\r\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Add Car</button>\r\n  </form>\r\n  <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\" class=\"container\">Back</button>\r\n</mat-card>\r\n"
 
 /***/ }),
 
@@ -302,7 +305,7 @@ module.exports = "<mat-card>\r\n  <form [formGroup]=\"addForm\" (submit)=\"add($
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".container {\n  width: 100%; }\n  .container .col {\n    width: 200px;\n    padding: 0 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1hZGQtbmV3L0M6XFx4YW1wcFxcaHRkb2NzXFxMYXJhdmVsLUFuZ3VsYXIvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGNhcnNcXGNhci1hZGQtbmV3XFxjYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQVcsRUFBQTtFQURmO0lBR1EsWUFBWTtJQUNaLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItYWRkLW5ldy9jYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIC5jb2x7XHJcbiAgICAgICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDAgMTBweDtcclxuICAgIH1cclxufSJdfQ== */"
+module.exports = ".container {\n  width: 100%; }\n  .container h3 {\n    margin: 0 0 10px 0; }\n  .container .col {\n    width: 200px;\n    padding: 0 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1hZGQtbmV3L0M6XFx4YW1wcFxcaHRkb2NzXFxMYXJhdmVsLUFuZ3VsYXIvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGNhcnNcXGNhci1hZGQtbmV3XFxjYXItYWRkLW5ldy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQVcsRUFBQTtFQURmO0lBR1Esa0JBQWtCLEVBQUE7RUFIMUI7SUFNUSxZQUFZO0lBQ1osZUFBZSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1hZGQtbmV3L2Nhci1hZGQtbmV3LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaDMge1xyXG4gICAgICAgIG1hcmdpbjogMCAwIDEwcHggMDtcclxuICAgIH1cclxuICAgIC5jb2x7XHJcbiAgICAgICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDAgMTBweDtcclxuICAgIH1cclxufSJdfQ== */"
 
 /***/ }),
 
@@ -373,10 +376,11 @@ var _filter = function (opt, value) {
     return opt.filter(function (item) { return item.toLowerCase().indexOf(filterValue) === 0; });
 };
 var CarAddNewComponent = /** @class */ (function () {
-    function CarAddNewComponent(ts, router, snackBar) {
+    function CarAddNewComponent(ts, router, snackBar, _formBuilder) {
         this.ts = ts;
         this.router = router;
         this.snackBar = snackBar;
+        this._formBuilder = _formBuilder;
         this.brandList = [{
                 letter: 'A',
                 names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
@@ -441,19 +445,18 @@ var CarAddNewComponent = /** @class */ (function () {
                 letter: 'Z',
                 names: ['Zenvo']
             }];
-        this.addForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormGroup"]({
+        this.addForm = this._formBuilder.group({
             brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [autocompleteValidator(this.brandList), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
             model: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [srtingValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
             year: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [yearValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
-            image: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](''),
+            image: '',
             price: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [numberValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
-            mileage: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"](0),
-            description: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('')
+            mileage: 0,
+            description: ''
         });
     }
     CarAddNewComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.warn(this.addForm);
         this.brandListOptions = this.addForm.controls.brand.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filterGroup(value); }));
     };
@@ -491,15 +494,225 @@ var CarAddNewComponent = /** @class */ (function () {
             duration: 3000
         });
     };
+    CarAddNewComponent.prototype.back = function () {
+        this.router.navigate(['cars']);
+    };
     CarAddNewComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-car-add-new',
             template: __webpack_require__(/*! ./car-add-new.component.html */ "./src/app/components/cars/car-add-new/car-add-new.component.html"),
             styles: [__webpack_require__(/*! ./car-add-new.component.scss */ "./src/app/components/cars/car-add-new/car-add-new.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]])
     ], CarAddNewComponent);
     return CarAddNewComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/cars/car-search/car-search.component.html":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/cars/car-search/car-search.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"searchForm\" (submit)=\"apply($event)\">\n  <div class=\"row\">\n    <h3>Search form:</h3>\n  </div>\n  <mat-form-field class=\"row\">\n    <input type=\"text\"\n          matInput\n          placeholder=\"Brand\"\n          formControlName=\"brand\"\n          [matAutocomplete]=\"autoBrand\">\n      <mat-autocomplete #autoBrand=\"matAutocomplete\">\n        <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\n          <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\n            {{name}}\n          </mat-option>\n      </mat-optgroup>\n    </mat-autocomplete>\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"text\" name=\"model\" matInput placeholder=\"Model\" formControlName=\"model\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"yearMin\" matInput placeholder=\"Year from\" formControlName=\"yearMin\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"yearMax\" matInput placeholder=\"Year to\" formControlName=\"yearMax\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"priceMin\" matInput placeholder=\"Price from\" formControlName=\"priceMin\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"priceMax\" matInput placeholder=\"Price to\" formControlName=\"priceMax\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"mileageMin\" matInput placeholder=\"Mileage from\" formControlName=\"mileageMin\">\n  </mat-form-field>\n  <mat-form-field class=\"row\">\n    <input type=\"number\" name=\"mileageMax\" matInput placeholder=\"Mileage to\" formControlName=\"mileageMax\">\n  </mat-form-field>\n  <button mat-raised-button color=\"primary\" type=\"submit\" class=\"row\">Apply search filter</button>\n</form>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/cars/car-search/car-search.component.scss":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/cars/car-search/car-search.component.scss ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".row {\n  width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zZWFyY2gvQzpcXHhhbXBwXFxodGRvY3NcXExhcmF2ZWwtQW5ndWxhci9zcmNcXGFwcFxcY29tcG9uZW50c1xcY2Fyc1xcY2FyLXNlYXJjaFxcY2FyLXNlYXJjaC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQVcsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItc2VhcmNoL2Nhci1zZWFyY2guY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucm93e1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/cars/car-search/car-search.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/components/cars/car-search/car-search.component.ts ***!
+  \********************************************************************/
+/*! exports provided: _filter, CarSearchComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_filter", function() { return _filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarSearchComponent", function() { return CarSearchComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_car_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/car.service */ "./src/app/service/car.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+
+
+
+var _filter = function (opt, value) {
+    var filterValue = value.toLowerCase();
+    return opt.filter(function (item) { return item.toLowerCase().indexOf(filterValue) === 0; });
+};
+var CarSearchComponent = /** @class */ (function () {
+    function CarSearchComponent(ts, router, snackBar, _formBuilder) {
+        var _this = this;
+        this.ts = ts;
+        this.router = router;
+        this.snackBar = snackBar;
+        this._formBuilder = _formBuilder;
+        this.brandList = [{
+                letter: 'A',
+                names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
+            }, {
+                letter: 'B',
+                names: ['Bentley', 'BMW', 'Bowler', 'Bugatti', 'Buick']
+            }, {
+                letter: 'C',
+                names: ['Cadillac', 'Caterham', 'Chery', 'Chevrolet', 'Chrysler', 'Citroen', 'Corvette']
+            }, {
+                letter: 'D',
+                names: ['Dacia', 'Daihatsu', 'Datsun', 'Dodge', 'DS']
+            }, {
+                letter: 'F',
+                names: ['Ferrari', 'Fiat', 'Fisker', 'Ford']
+            }, {
+                letter: 'G',
+                names: ['Ginetta', 'GMC']
+            }, {
+                letter: 'H',
+                names: ['Holden', 'Honda', 'Hyundai']
+            }, {
+                letter: 'I',
+                names: ['Infiniti', 'Isuzu']
+            }, {
+                letter: 'J',
+                names: ['Jaguar', 'Jeep']
+            }, {
+                letter: 'K',
+                names: ['Kia', 'Koenigsegg']
+            }, {
+                letter: 'L',
+                names: ['Lamborghini', 'Lancia', 'Land Rover', 'Lexus', 'Lincoln', 'Lister', 'Lotus']
+            }, {
+                letter: 'M',
+                names: ['Mahindra & Mahindra', 'Maserati', 'Mastretta', 'Mazda', 'McLaren', 'Mercedes-Benz', 'MG', 'Mini', 'Mitsubishi']
+            }, {
+                letter: 'N',
+                names: ['Nissan', 'Noble']
+            }, {
+                letter: 'O',
+                names: ['Opel']
+            }, {
+                letter: 'P',
+                names: ['Pagani', 'Perodua', 'Peugeot', 'Porsche', 'Proton']
+            }, {
+                letter: 'R',
+                names: ['Ram', 'Renault', 'Roewe', 'Rolls-Royce', 'RUF']
+            }, {
+                letter: 'S',
+                names: ['Saab', 'Saleen', 'Scion', 'Seat', 'Skoda', 'Smart', 'SsangYong', 'Subaru', 'Suzuki']
+            }, {
+                letter: 'T',
+                names: ['Tata', 'Tesla', 'Toyota', 'TVR']
+            }, {
+                letter: 'V',
+                names: ['Vauxhall', 'Venturi', 'Volkswagen', 'Volvo']
+            }, {
+                letter: 'W',
+                names: ['Wiesmann']
+            }, {
+                letter: 'Z',
+                names: ['Zenvo']
+            }];
+        this.searchForm = this._formBuilder.group({
+            brand: '',
+            model: '',
+            yearMin: '',
+            yearMax: '',
+            priceMin: '',
+            priceMax: '',
+            mileageMin: '',
+            mileageMax: '',
+        });
+        this.ts.shared_value = {
+            brand: '',
+            model: '',
+            yearMin: '',
+            yearMax: '',
+            priceMin: '',
+            priceMax: '',
+            mileageMin: '',
+            mileageMax: '',
+        };
+        this.router.routeReuseStrategy.shouldReuseRoute = function () {
+            return false;
+        };
+        this.mySubscription = this.router.events.subscribe(function (event) {
+            if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["NavigationEnd"]) {
+                _this.router.navigated = false;
+            }
+        });
+    }
+    CarSearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.brandListOptions = this.searchForm.controls.brand.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filterGroup(value); }));
+    };
+    CarSearchComponent.prototype._filterGroup = function (value) {
+        if (value) {
+            return this.brandList
+                .map(function (group) { return ({ letter: group.letter, names: _filter(group.names, value) }); })
+                .filter(function (group) { return group.names.length > 0; });
+        }
+        return this.brandList;
+    };
+    CarSearchComponent.prototype.apply = function () {
+        var obj = {
+            brand: this.searchForm.controls.brand.value,
+            model: this.searchForm.controls.model.value,
+            yearMin: this.searchForm.controls.yearMin.value,
+            yearMax: this.searchForm.controls.yearMax.value,
+            priceMin: this.searchForm.controls.priceMin.value,
+            priceMax: this.searchForm.controls.priceMax.value,
+            mileageMin: this.searchForm.controls.mileageMin.value,
+            mileageMax: this.searchForm.controls.mileageMax.value
+        };
+        this.ts.sharedGetAll(obj);
+        this.router.navigate(['cars']);
+    };
+    CarSearchComponent.prototype.msg = function (message, panelClass) {
+        this.snackBar.openFromComponent(_components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__["NotificationComponent"], {
+            data: message,
+            panelClass: panelClass,
+            duration: 3000
+        });
+    };
+    CarSearchComponent.prototype.ngOnDestroy = function () {
+        if (this.mySubscription) {
+            this.mySubscription.unsubscribe();
+        }
+    };
+    CarSearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-car-search',
+            template: __webpack_require__(/*! ./car-search.component.html */ "./src/app/components/cars/car-search/car-search.component.html"),
+            styles: [__webpack_require__(/*! ./car-search.component.scss */ "./src/app/components/cars/car-search/car-search.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]])
+    ], CarSearchComponent);
+    return CarSearchComponent;
 }());
 
 
@@ -553,26 +766,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CarShowAllComponent = /** @class */ (function () {
-    function CarShowAllComponent(carService, router, snackBar) {
-        this.carService = carService;
+    function CarShowAllComponent(ts, router, snackBar) {
+        this.ts = ts;
         this.router = router;
         this.snackBar = snackBar;
         this.cars = [];
+        this.lastRequest = {};
     }
     CarShowAllComponent.prototype.ngOnInit = function () {
-        this.getAllCars();
+        this.lastRequest = this.ts.shared_value;
+        this.getAllCars(this.lastRequest);
     };
-    CarShowAllComponent.prototype.getAllCars = function () {
+    CarShowAllComponent.prototype.getAllCars = function (params) {
         var _this = this;
-        this.carService.getCars().subscribe(function (all) {
+        for (var item in params) {
+            if (params[item] == null) {
+                params[item] = '';
+            }
+        }
+        this.ts.getCars(params.brand, params.model, params.yearMin, params.yearMax, params.priceMin, params.priceMax, params.mileageMin, params.mileageMax).subscribe(function (all) {
             _this.cars = all;
         });
     };
     CarShowAllComponent.prototype.remove = function (id) {
         var _this = this;
-        this.carService.deleteCar(id).subscribe(function (data) {
+        this.ts.deleteCar(id).subscribe(function (data) {
             if (data['status'] == 'done') {
-                _this.getAllCars();
+                _this.getAllCars(_this.lastRequest);
                 _this.msg('Successfully deleted', 'success-notify');
             }
             else {
@@ -862,6 +1082,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _Car__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Car */ "./src/app/Car.ts");
+/* harmony import */ var rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/internal/BehaviorSubject */ "./node_modules/rxjs/internal/BehaviorSubject.js");
+/* harmony import */ var rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -874,13 +1097,29 @@ var CarService = /** @class */ (function () {
     function CarService(http) {
         this.http = http;
         this.server = 'http://localhost/Laravel-Angular/server/public/api/';
+        this.to_component = new rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"]({});
+        this.shared_value;
+        this.to_component.next(this.shared_value);
     }
+    CarService.prototype.sharedGetAll = function (val) {
+        this.shared_value = val;
+        this.to_component.next(this.shared_value);
+    };
     CarService.prototype.addCar = function (brand, model, year, image, price, mileage, description) {
         var newCar = new _Car__WEBPACK_IMPORTED_MODULE_3__["Car"](brand, model, year, image, price, mileage, description);
         return this.http.put(this.server + 'add', newCar);
     };
-    CarService.prototype.getCars = function () {
-        return this.http.get(this.server + 'all');
+    CarService.prototype.getCars = function (brand, model, yearMin, yearMax, priceMin, priceMax, mileageMin, mileageMax) {
+        return this.http.get(this.server + 'all', { params: {
+                brand: brand,
+                model: model,
+                yearMin: yearMin,
+                yearMax: yearMax,
+                priceMin: priceMin,
+                priceMax: priceMax,
+                mileageMin: mileageMin,
+                mileageMax: mileageMax
+            } });
     };
     CarService.prototype.deleteCar = function (index) {
         return this.http.delete(this.server + 'delete', { params: { id: index } });
