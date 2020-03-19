@@ -1,10 +1,13 @@
-<button mat-raised-button color="accent" class="add_new" routerLink="/cars/add">Add New</button>
+<button mat-raised-button color="accent" class="add_new" (click)="addNew()">Add New</button>
 <ul class="cars">
   <li class="section" *ngFor="let car of cars; let id = index;">
     <div class="flex-elem" (click)="singular(car.id)">
       <img class="image" src="{{car.image}}" alt="">
       <div class="content">
         <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>
+        <h4>{{car.price}}$</h4>
+        <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage}}</p>
+        <div>{{car.description}}</div>
       </div>
     </div>
     <button color="warn" class="remove-car" (click)="remove(car.id)"><mat-icon>clear</mat-icon></button>

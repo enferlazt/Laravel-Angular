@@ -1,11 +1,18 @@
-<h3>Car Details</h3>
-<p>Car ID {{car?.id}}</p>
-<p>Car Brand {{car?.brand}}</p>
-<p>Car Model {{car?.model}}</p>
-<p>Car Year {{car?.year}}</p>
-<p>Car Price {{car?.price}}</p>
-<p>Car Mileage {{car?.mileage}}</p>
-<p>Car Image {{car?.image}}</p>
-<p>Car Description {{car?.description}}</p>
-<p>Car Date {{car?.date}}</p>
-<button routerLink="/cars">Back</button>
+<div class="container">
+    <button mat-raised-button color="accent" class="edit" (click)="edit()">Edit</button>
+    <div class="content">
+        <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>
+        <div class="center" *ngIf="car?.image">
+            <img class="image" src="{{car?.image}}" alt="">
+        </div>
+        <h3>Price: {{car?.price}}$</h3>
+        <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage}}</h4>
+        <h4>Created at {{car?.created_at}}</h4>
+        <h4 *ngIf="car?.updated_at != car?.created_at">Updated at {{car?.updated_at}}</h4>
+        <ng-template [ngIf]="car?.description">
+            <h4>Description</h4>
+            <div>{{car?.description}}</div>
+        </ng-template>
+        <button style="margin-top: 5px;" mat-raised-button (click)="back()">Back</button>
+    </div>
+</div>

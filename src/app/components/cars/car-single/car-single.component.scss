@@ -1,0 +1,27 @@
+.container{
+    position: relative;
+    .edit{
+        position: absolute;
+        right: 0;
+    }
+    .content{
+        padding-top: 46px;
+
+        h2, h3, h4, div, .center{
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        h3{
+            color: forestgreen;
+        }
+
+        .center{
+            text-align: center;
+            img{
+                max-width: 100%;
+                max-height: 500px;
+            }
+        }
+    }
+}

@@ -42,6 +42,10 @@ export class CarShowAllComponent implements OnInit {
     });
   }
 
+  addNew(){
+    this.router.navigate(['cars/add']);
+  }
+
   remove(id){
     this.ts.deleteCar(id).subscribe((data) => {
       if(data['status'] == 'done'){
