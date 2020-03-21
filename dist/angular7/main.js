@@ -88,6 +88,7 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatProgressSpinnerModule"],
             ],
             exports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -101,7 +102,8 @@ var AppMaterialModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatGridListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatProgressSpinnerModule"],
             ]
         })
     ], AppMaterialModule);
@@ -525,7 +527,7 @@ var CarAddNewComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n  <form [formGroup]=\"editForm\" (submit)=\"edit($event)\">\n    <div class=\"container\">\n      <h3>Edit vehicle info:</h3>\n    </div>\n    <div class=\"container\">\n      <mat-form-field class=\"col\">\n        <input type=\"text\"\n              matInput\n              placeholder=\"Brand *\"\n              formControlName=\"brand\"\n              [matAutocomplete]=\"autoBrand\">\n          <mat-autocomplete #autoBrand=\"matAutocomplete\">\n            <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\n              <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\n                {{name}}\n              </mat-option>\n          </mat-optgroup>\n        </mat-autocomplete>\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\n      </mat-form-field>\n    </div>\n    <div class=\"container\">\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\n      </mat-form-field>\n    </div>\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Save changes</button>\n  </form>\n  <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\" class=\"container\">Back</button>\n</mat-card>\n"
+module.exports = "<ng-template [ngIf]=\"spinner\" [ngIfElse]=\"content\">\n  <div class=\"spinner\">\n    <mat-spinner></mat-spinner>\n  </div>\n</ng-template>\n<ng-template #content>\n  <mat-card>\n    <form [formGroup]=\"editForm\" (submit)=\"edit($event)\">\n      <div class=\"container\">\n        <h3>Edit vehicle info:</h3>\n      </div>\n      <div class=\"container\">\n        <mat-form-field class=\"col\">\n          <input type=\"text\"\n                matInput\n                placeholder=\"Brand *\"\n                formControlName=\"brand\"\n                [matAutocomplete]=\"autoBrand\">\n            <mat-autocomplete #autoBrand=\"matAutocomplete\">\n              <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\n                <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\n                  {{name}}\n                </mat-option>\n            </mat-optgroup>\n          </mat-autocomplete>\n        </mat-form-field>\n        <mat-form-field class=\"col\">\n          <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\n        </mat-form-field>\n        <mat-form-field class=\"col\">\n          <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\n        </mat-form-field>\n        <mat-form-field class=\"col\">\n          <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\n        </mat-form-field>\n        <mat-form-field class=\"col\">\n          <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\n        </mat-form-field>\n        <mat-form-field class=\"col\">\n          <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\n        </mat-form-field>\n      </div>\n      <div class=\"container\">\n        <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\n          <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\n        </mat-form-field>\n      </div>\n      <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Save changes</button>\n    </form>\n    <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\" class=\"container\">Back</button>\n  </mat-card>\n</ng-template>\n"
 
 /***/ }),
 
@@ -613,6 +615,7 @@ var CarEditComponent = /** @class */ (function () {
         this.router = router;
         this.snackBar = snackBar;
         this._formBuilder = _formBuilder;
+        this.spinner = true;
         this.brandList = [{
                 letter: 'A',
                 names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
@@ -693,6 +696,7 @@ var CarEditComponent = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filterGroup(value); }));
         this.route.params.subscribe(function (data) {
             _this.ts.singularCar(data.id).subscribe(function (auto) {
+                _this.spinner = false;
                 _this.id = auto.id;
                 _this.editForm.setValue({
                     brand: auto.brand,
@@ -972,7 +976,7 @@ var CarSearchComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" (click)=\"addNew()\">Add New</button>\r\n<ng-template [ngIf]=\"cars.length > 0\" [ngIfElse]=\"noResults\">\r\n  <ul class=\"cars\">\r\n    <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n      <div class=\"flex-elem\" (click)=\"singular(car.id)\">\r\n        <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n        <div class=\"content\">\r\n          <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>\r\n          <h4>{{car.price}}$</h4>\r\n          <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage + ' mi'}}</p>\r\n          <div>{{car.description}}</div>\r\n        </div>\r\n      </div>\r\n      <button color=\"warn\" class=\"remove-car\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n    </li>\r\n  </ul>\r\n</ng-template>\r\n<ng-template #noResults>\r\n  <h3 class=\"no-data\">No results</h3>\r\n</ng-template>\r\n"
+module.exports = "<ng-template [ngIf]=\"spinner\" [ngIfElse]=\"content\">\r\n  <div class=\"spinner\">\r\n    <mat-spinner></mat-spinner>\r\n  </div>\r\n</ng-template>\r\n<ng-template #content>\r\n  <button mat-raised-button color=\"accent\" class=\"add_new\" (click)=\"addNew()\">Add New</button>\r\n  <ng-template [ngIf]=\"cars.length > 0\" [ngIfElse]=\"noResults\">\r\n    <ul class=\"cars\">\r\n      <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n        <div class=\"flex-elem\" (click)=\"singular(car.id)\">\r\n          <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n          <div class=\"content\">\r\n            <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>\r\n            <h4>{{car.price}}$</h4>\r\n            <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage + ' mi'}}</p>\r\n            <div>{{car.description}}</div>\r\n          </div>\r\n        </div>\r\n        <button color=\"warn\" class=\"remove-car\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n      </li>\r\n    </ul>\r\n  </ng-template>\r\n  <ng-template #noResults>\r\n    <h3 class=\"no-data\">No results</h3>\r\n  </ng-template>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -1018,6 +1022,7 @@ var CarShowAllComponent = /** @class */ (function () {
         this.snackBar = snackBar;
         this.cars = [];
         this.lastRequest = {};
+        this.spinner = true;
     }
     CarShowAllComponent.prototype.ngOnInit = function () {
         this.lastRequest = this.ts.shared_value;
@@ -1031,6 +1036,7 @@ var CarShowAllComponent = /** @class */ (function () {
             }
         }
         this.ts.getCars(params.brand, params.model, params.yearMin, params.yearMax, params.priceMin, params.priceMax, params.mileageMin, params.mileageMax).subscribe(function (all) {
+            _this.spinner = false;
             _this.cars = all;
         });
     };
@@ -1085,7 +1091,7 @@ var CarShowAllComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <button mat-raised-button color=\"accent\" class=\"edit\" (click)=\"edit(car?.id)\">Edit</button>\n    <div class=\"content\">\n        <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>\n        <div class=\"center\" *ngIf=\"car?.image\">\n            <img class=\"image\" src=\"{{car?.image}}\" alt=\"\">\n        </div>\n        <h3>Price: {{car?.price}}$</h3>\n        <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage + ' miles'}}</h4>\n        <h4>Added at {{car?.created_at}}</h4>\n        <h4 *ngIf=\"car?.updated_at != car?.created_at\">Updated at {{car?.updated_at}}</h4>\n        <ng-template [ngIf]=\"car?.description\">\n            <h4>Description</h4>\n            <div>{{car?.description}}</div>\n        </ng-template>\n        <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n</div>"
+module.exports = "<ng-template [ngIf]=\"spinner\" [ngIfElse]=\"content\">\n    <div class=\"spinner\">\n        <mat-spinner></mat-spinner>\n    </div>\n</ng-template>\n<ng-template #content>\n    <div class=\"container\">\n        <button mat-raised-button color=\"accent\" class=\"edit\" (click)=\"edit(car?.id)\">Edit</button>\n        <div class=\"content\">\n            <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>\n            <div class=\"center\" *ngIf=\"car?.image\">\n                <img class=\"image\" src=\"{{car?.image}}\" alt=\"\">\n            </div>\n            <h3>Price: {{car?.price}}$</h3>\n            <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage + ' miles'}}</h4>\n            <h4>Added at {{car?.created_at}}</h4>\n            <h4 *ngIf=\"car?.updated_at != car?.created_at\">Updated at {{car?.updated_at}}</h4>\n            <ng-template [ngIf]=\"car?.description\">\n                <h4>Description</h4>\n                <div>{{car?.description}}</div>\n            </ng-template>\n            <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\">Back</button>\n        </div>\n    </div>\n</ng-template>"
 
 /***/ }),
 
@@ -1123,11 +1129,13 @@ var CarSingleComponent = /** @class */ (function () {
         this.route = route;
         this.router = router;
         this.ts = ts;
+        this.spinner = true;
     }
     CarSingleComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (data) {
             _this.ts.singularCar(data.id).subscribe(function (auto) {
+                _this.spinner = false;
                 _this.car = auto;
             });
         });

@@ -7,6 +7,7 @@ import {ValidatorFn, Validators, AbstractControl, FormControl, FormGroup, FormBu
 import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 
+
 export interface BrandList {
   letter: string;
   names: string[];
@@ -63,7 +64,11 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./car-edit.component.scss']
 })
 export class CarEditComponent implements OnInit {
+
   id: String;
+
+  spinner: Boolean = true;
+
   brandList: BrandList[] = [{
     letter: 'A',
     names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
@@ -154,6 +159,7 @@ export class CarEditComponent implements OnInit {
       );
     this.route.params.subscribe((data) => {
       this.ts.singularCar(data.id).subscribe((auto) => {
+        this.spinner = false;
         this.id = auto.id;
         this.editForm.setValue({
           brand: auto.brand,

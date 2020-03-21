@@ -12,11 +12,14 @@ export class CarSingleComponent implements OnInit {
 
   car: Car;
 
+  spinner: Boolean = true;
+
   constructor(private route:ActivatedRoute, private router: Router, private ts: CarService) {}
 
   ngOnInit() {
     this.route.params.subscribe((data) => {
       this.ts.singularCar(data.id).subscribe((auto) => {
+        this.spinner = false;
         this.car = auto;
       });
     });

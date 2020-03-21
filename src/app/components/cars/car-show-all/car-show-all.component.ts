@@ -13,8 +13,12 @@ import {NotificationComponent} from '../../../components/notification/notificati
 export class CarShowAllComponent implements OnInit {
   
   cars : Car[] = [];
+
   @Input() car: Car;
+
   lastRequest: object = {};
+
+  spinner: Boolean = true;
 
   constructor(private ts: CarService, private router: Router, private snackBar: MatSnackBar) {}
 
@@ -38,6 +42,7 @@ export class CarShowAllComponent implements OnInit {
       params.priceMax,
       params.mileageMin,
       params.mileageMax).subscribe((all) => {
+      this.spinner = false;
       this.cars = all;
     });
   }

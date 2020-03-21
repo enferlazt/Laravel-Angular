@@ -1,20 +1,27 @@
-<button mat-raised-button color="accent" class="add_new" (click)="addNew()">Add New</button>
-<ng-template [ngIf]="cars.length > 0" [ngIfElse]="noResults">
-  <ul class="cars">
-    <li class="section" *ngFor="let car of cars; let id = index;">
-      <div class="flex-elem" (click)="singular(car.id)">
-        <img class="image" src="{{car.image}}" alt="">
-        <div class="content">
-          <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>
-          <h4>{{car.price}}$</h4>
-          <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage + ' mi'}}</p>
-          <div>{{car.description}}</div>
-        </div>
-      </div>
-      <button color="warn" class="remove-car" (click)="remove(car.id)"><mat-icon>clear</mat-icon></button>
-    </li>
-  </ul>
+<ng-template [ngIf]="spinner" [ngIfElse]="content">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
 </ng-template>
-<ng-template #noResults>
-  <h3 class="no-data">No results</h3>
+<ng-template #content>
+  <button mat-raised-button color="accent" class="add_new" (click)="addNew()">Add New</button>
+  <ng-template [ngIf]="cars.length > 0" [ngIfElse]="noResults">
+    <ul class="cars">
+      <li class="section" *ngFor="let car of cars; let id = index;">
+        <div class="flex-elem" (click)="singular(car.id)">
+          <img class="image" src="{{car.image}}" alt="">
+          <div class="content">
+            <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>
+            <h4>{{car.price}}$</h4>
+            <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage + ' mi'}}</p>
+            <div>{{car.description}}</div>
+          </div>
+        </div>
+        <button color="warn" class="remove-car" (click)="remove(car.id)"><mat-icon>clear</mat-icon></button>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-template #noResults>
+    <h3 class="no-data">No results</h3>
+  </ng-template>
 </ng-template>

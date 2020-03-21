@@ -1,18 +1,25 @@
-<div class="container">
-    <button mat-raised-button color="accent" class="edit" (click)="edit(car?.id)">Edit</button>
-    <div class="content">
-        <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>
-        <div class="center" *ngIf="car?.image">
-            <img class="image" src="{{car?.image}}" alt="">
-        </div>
-        <h3>Price: {{car?.price}}$</h3>
-        <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage + ' miles'}}</h4>
-        <h4>Added at {{car?.created_at}}</h4>
-        <h4 *ngIf="car?.updated_at != car?.created_at">Updated at {{car?.updated_at}}</h4>
-        <ng-template [ngIf]="car?.description">
-            <h4>Description</h4>
-            <div>{{car?.description}}</div>
-        </ng-template>
-        <button style="margin-top: 5px;" mat-raised-button (click)="back()">Back</button>
+<ng-template [ngIf]="spinner" [ngIfElse]="content">
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
     </div>
-</div>
+</ng-template>
+<ng-template #content>
+    <div class="container">
+        <button mat-raised-button color="accent" class="edit" (click)="edit(car?.id)">Edit</button>
+        <div class="content">
+            <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>
+            <div class="center" *ngIf="car?.image">
+                <img class="image" src="{{car?.image}}" alt="">
+            </div>
+            <h3>Price: {{car?.price}}$</h3>
+            <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage + ' miles'}}</h4>
+            <h4>Added at {{car?.created_at}}</h4>
+            <h4 *ngIf="car?.updated_at != car?.created_at">Updated at {{car?.updated_at}}</h4>
+            <ng-template [ngIf]="car?.description">
+                <h4>Description</h4>
+                <div>{{car?.description}}</div>
+            </ng-template>
+            <button style="margin-top: 5px;" mat-raised-button (click)="back()">Back</button>
+        </div>
+    </div>
+</ng-template>
