@@ -24,3 +24,5 @@ Route::get('all', 'carController@all');
 Route::delete('delete', 'carController@delete');
 
 Route::get('singular', 'carController@singular');
+
+Route::put('update', 'carController@update');

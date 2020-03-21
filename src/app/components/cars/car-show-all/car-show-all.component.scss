@@ -5,10 +5,12 @@
 li{
   list-style-type: none;
 }
+
 .cars{
   padding: 0;
   margin-top: 54px;
 }
+
 li.section{
   margin: 15px 10px;
   padding: 15px;
@@ -87,4 +89,9 @@ button.remove-car{
     padding-top: 2px;
     font-size: 20px;
   }
+}
+
+.no-data{
+  text-align: center;
+  padding-top: 46px;
 }

@@ -1,0 +1,45 @@
+<mat-card>
+  <form [formGroup]="editForm" (submit)="edit($event)">
+    <div class="container">
+      <h3>Edit vehicle info:</h3>
+    </div>
+    <div class="container">
+      <mat-form-field class="col">
+        <input type="text"
+              matInput
+              placeholder="Brand *"
+              formControlName="brand"
+              [matAutocomplete]="autoBrand">
+          <mat-autocomplete #autoBrand="matAutocomplete">
+            <mat-optgroup *ngFor="let elem of brandListOptions | async" [label]="elem.letter">
+              <mat-option *ngFor="let name of elem.names" [value]="name">
+                {{name}}
+              </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="col">
+        <input type="text" name="model" matInput placeholder="Model *" formControlName="model">
+      </mat-form-field>
+      <mat-form-field class="col">
+        <input type="number" name="year" matInput placeholder="Year *" formControlName="year">
+      </mat-form-field>
+      <mat-form-field class="col">
+        <input type="text" name="image" matInput placeholder="Image" formControlName="image">
+      </mat-form-field>
+      <mat-form-field class="col">
+        <input type="number" name="price" matInput placeholder="Price *" formControlName="price">
+      </mat-form-field>
+      <mat-form-field class="col">
+        <input type="number" name="mileage" matInput placeholder="Mileage" formControlName="mileage">
+      </mat-form-field>
+    </div>
+    <div class="container">
+      <mat-form-field class="container" style="padding: 0 10px;">
+        <textarea type="text" name="description" matInput placeholder="Description" formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" type="submit" class="container">Save changes</button>
+  </form>
+  <button style="margin-top: 5px;" mat-raised-button (click)="back()" class="container">Back</button>
+</mat-card>

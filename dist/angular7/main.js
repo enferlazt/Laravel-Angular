@@ -128,6 +128,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cars_car_add_new_car_add_new_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/cars/car-add-new/car-add-new.component */ "./src/app/components/cars/car-add-new/car-add-new.component.ts");
 /* harmony import */ var _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/cars/car-show-all/car-show-all.component */ "./src/app/components/cars/car-show-all/car-show-all.component.ts");
 /* harmony import */ var _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/cars/car-single/car-single.component */ "./src/app/components/cars/car-single/car-single.component.ts");
+/* harmony import */ var _components_cars_car_edit_car_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/cars/car-edit/car-edit.component */ "./src/app/components/cars/car-edit/car-edit.component.ts");
+
 
 
 
@@ -139,6 +141,7 @@ var routes = [
     { path: 'cars', component: _components_cars_car_show_all_car_show_all_component__WEBPACK_IMPORTED_MODULE_4__["CarShowAllComponent"] },
     { path: 'cars/add', component: _components_cars_car_add_new_car_add_new_component__WEBPACK_IMPORTED_MODULE_3__["CarAddNewComponent"] },
     { path: 'car/:id', component: _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_5__["CarSingleComponent"] },
+    { path: 'car/:id/edit', component: _components_cars_car_edit_car_edit_component__WEBPACK_IMPORTED_MODULE_6__["CarEditComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -236,6 +239,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/cars/car-single/car-single.component */ "./src/app/components/cars/car-single/car-single.component.ts");
 /* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
 /* harmony import */ var _components_cars_car_search_car_search_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/cars/car-search/car-search.component */ "./src/app/components/cars/car-search/car-search.component.ts");
+/* harmony import */ var _components_cars_car_edit_car_edit_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/cars/car-edit/car-edit.component */ "./src/app/components/cars/car-edit/car-edit.component.ts");
+
 
 
 
@@ -266,6 +271,7 @@ var AppModule = /** @class */ (function () {
                 _components_cars_car_single_car_single_component__WEBPACK_IMPORTED_MODULE_13__["CarSingleComponent"],
                 _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_14__["NotificationComponent"],
                 _components_cars_car_search_car_search_component__WEBPACK_IMPORTED_MODULE_15__["CarSearchComponent"],
+                _components_cars_car_edit_car_edit_component__WEBPACK_IMPORTED_MODULE_16__["CarEditComponent"],
             ],
             imports: [
                 _angular_forms__WEBPACK_IMPORTED_MODULE_7__["ReactiveFormsModule"],
@@ -512,6 +518,246 @@ var CarAddNewComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/components/cars/car-edit/car-edit.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/components/cars/car-edit/car-edit.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<mat-card>\n  <form [formGroup]=\"editForm\" (submit)=\"edit($event)\">\n    <div class=\"container\">\n      <h3>Edit vehicle info:</h3>\n    </div>\n    <div class=\"container\">\n      <mat-form-field class=\"col\">\n        <input type=\"text\"\n              matInput\n              placeholder=\"Brand *\"\n              formControlName=\"brand\"\n              [matAutocomplete]=\"autoBrand\">\n          <mat-autocomplete #autoBrand=\"matAutocomplete\">\n            <mat-optgroup *ngFor=\"let elem of brandListOptions | async\" [label]=\"elem.letter\">\n              <mat-option *ngFor=\"let name of elem.names\" [value]=\"name\">\n                {{name}}\n              </mat-option>\n          </mat-optgroup>\n        </mat-autocomplete>\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"text\" name=\"model\" matInput placeholder=\"Model *\" formControlName=\"model\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"year\" matInput placeholder=\"Year *\" formControlName=\"year\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"text\" name=\"image\" matInput placeholder=\"Image\" formControlName=\"image\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"price\" matInput placeholder=\"Price *\" formControlName=\"price\">\n      </mat-form-field>\n      <mat-form-field class=\"col\">\n        <input type=\"number\" name=\"mileage\" matInput placeholder=\"Mileage\" formControlName=\"mileage\">\n      </mat-form-field>\n    </div>\n    <div class=\"container\">\n      <mat-form-field class=\"container\" style=\"padding: 0 10px;\">\n        <textarea type=\"text\" name=\"description\" matInput placeholder=\"Description\" formControlName=\"description\"></textarea>\n      </mat-form-field>\n    </div>\n    <button mat-raised-button color=\"primary\" type=\"submit\" class=\"container\">Save changes</button>\n  </form>\n  <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\" class=\"container\">Back</button>\n</mat-card>\n"
+
+/***/ }),
+
+/***/ "./src/app/components/cars/car-edit/car-edit.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/components/cars/car-edit/car-edit.component.scss ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".container {\n  width: 100%; }\n  .container h3 {\n    margin: 0 0 10px 0; }\n  .container .col {\n    width: 200px;\n    padding: 0 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1lZGl0L0M6XFx4YW1wcFxcaHRkb2NzXFxMYXJhdmVsLUFuZ3VsYXIvc3JjXFxhcHBcXGNvbXBvbmVudHNcXGNhcnNcXGNhci1lZGl0XFxjYXItZWRpdC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQVcsRUFBQTtFQURmO0lBR1Esa0JBQWtCLEVBQUE7RUFIMUI7SUFNUSxZQUFZO0lBQ1osZUFBZSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1lZGl0L2Nhci1lZGl0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaDMge1xyXG4gICAgICAgIG1hcmdpbjogMCAwIDEwcHggMDtcclxuICAgIH1cclxuICAgIC5jb2x7XHJcbiAgICAgICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgICAgIHBhZGRpbmc6IDAgMTBweDtcclxuICAgIH1cclxufSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/components/cars/car-edit/car-edit.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/components/cars/car-edit/car-edit.component.ts ***!
+  \****************************************************************/
+/*! exports provided: _filter, CarEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_filter", function() { return _filter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarEditComponent", function() { return CarEditComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_car_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/car.service */ "./src/app/service/car.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
+/* harmony import */ var _components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/notification/notification.component */ "./src/app/components/notification/notification.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+
+
+
+
+function autocompleteValidator(validOptions) {
+    return function (control) {
+        for (var elem in validOptions) {
+            if (validOptions[elem]['names'].indexOf(control.value) !== -1) {
+                return null;
+            }
+        }
+        return { 'invalidAutocomplete': { value: control.value } };
+    };
+}
+function yearValidator() {
+    return function (control) {
+        var current = new Date().getFullYear();
+        if (control.value != null && control.value >= '1920' && control.value <= current) {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+function numberValidator() {
+    return function (control) {
+        if (control.value != null && control.value > '0') {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+function srtingValidator() {
+    return function (control) {
+        if (control.value != null && control.value.length > 0) {
+            return null;
+        }
+        return { 'invalidInput': { value: control.value } };
+    };
+}
+var _filter = function (opt, value) {
+    var filterValue = value.toLowerCase();
+    return opt.filter(function (item) { return item.toLowerCase().indexOf(filterValue) === 0; });
+};
+var CarEditComponent = /** @class */ (function () {
+    function CarEditComponent(route, ts, router, snackBar, _formBuilder) {
+        this.route = route;
+        this.ts = ts;
+        this.router = router;
+        this.snackBar = snackBar;
+        this._formBuilder = _formBuilder;
+        this.brandList = [{
+                letter: 'A',
+                names: ['Abarth', 'Acura', 'Alfa Romeo', 'Alpina', 'Arash', 'Aston Martin', 'Audi']
+            }, {
+                letter: 'B',
+                names: ['Bentley', 'BMW', 'Bowler', 'Bugatti', 'Buick']
+            }, {
+                letter: 'C',
+                names: ['Cadillac', 'Caterham', 'Chery', 'Chevrolet', 'Chrysler', 'Citroen', 'Corvette']
+            }, {
+                letter: 'D',
+                names: ['Dacia', 'Daihatsu', 'Datsun', 'Dodge', 'DS']
+            }, {
+                letter: 'F',
+                names: ['Ferrari', 'Fiat', 'Fisker', 'Ford']
+            }, {
+                letter: 'G',
+                names: ['Ginetta', 'GMC']
+            }, {
+                letter: 'H',
+                names: ['Holden', 'Honda', 'Hyundai']
+            }, {
+                letter: 'I',
+                names: ['Infiniti', 'Isuzu']
+            }, {
+                letter: 'J',
+                names: ['Jaguar', 'Jeep']
+            }, {
+                letter: 'K',
+                names: ['Kia', 'Koenigsegg']
+            }, {
+                letter: 'L',
+                names: ['Lamborghini', 'Lancia', 'Land Rover', 'Lexus', 'Lincoln', 'Lister', 'Lotus']
+            }, {
+                letter: 'M',
+                names: ['Mahindra & Mahindra', 'Maserati', 'Mastretta', 'Mazda', 'McLaren', 'Mercedes-Benz', 'MG', 'Mini', 'Mitsubishi']
+            }, {
+                letter: 'N',
+                names: ['Nissan', 'Noble']
+            }, {
+                letter: 'O',
+                names: ['Opel']
+            }, {
+                letter: 'P',
+                names: ['Pagani', 'Perodua', 'Peugeot', 'Porsche', 'Proton']
+            }, {
+                letter: 'R',
+                names: ['Ram', 'Renault', 'Roewe', 'Rolls-Royce', 'RUF']
+            }, {
+                letter: 'S',
+                names: ['Saab', 'Saleen', 'Scion', 'Seat', 'Skoda', 'Smart', 'SsangYong', 'Subaru', 'Suzuki']
+            }, {
+                letter: 'T',
+                names: ['Tata', 'Tesla', 'Toyota', 'TVR']
+            }, {
+                letter: 'V',
+                names: ['Vauxhall', 'Venturi', 'Volkswagen', 'Volvo']
+            }, {
+                letter: 'W',
+                names: ['Wiesmann']
+            }, {
+                letter: 'Z',
+                names: ['Zenvo']
+            }];
+        this.editForm = this._formBuilder.group({
+            brand: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [autocompleteValidator(this.brandList), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            model: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [srtingValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            year: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [yearValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            image: '',
+            price: new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]('', { validators: [numberValidator(), _angular_forms__WEBPACK_IMPORTED_MODULE_6__["Validators"].required] }),
+            mileage: 0,
+            description: ''
+        });
+    }
+    CarEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.brandListOptions = this.editForm.controls.brand.valueChanges
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filterGroup(value); }));
+        this.route.params.subscribe(function (data) {
+            _this.ts.singularCar(data.id).subscribe(function (auto) {
+                _this.id = auto.id;
+                _this.editForm.setValue({
+                    brand: auto.brand,
+                    model: auto.model,
+                    year: auto.year,
+                    image: auto.image,
+                    price: auto.price,
+                    mileage: auto.mileage,
+                    description: auto.description
+                });
+            });
+        });
+    };
+    CarEditComponent.prototype._filterGroup = function (value) {
+        if (value) {
+            return this.brandList
+                .map(function (group) { return ({ letter: group.letter, names: _filter(group.names, value) }); })
+                .filter(function (group) { return group.names.length > 0; });
+        }
+        return this.brandList;
+    };
+    CarEditComponent.prototype.edit = function (event) {
+        var _this = this;
+        event.preventDefault();
+        if (this.editForm.controls.brand.valid && this.editForm.controls.model.valid && this.editForm.controls.year.valid && this.editForm.controls.price.valid) {
+            this.ts.editCar(this.id, this.editForm.controls.brand.value, this.editForm.controls.model.value, this.editForm.controls.year.value, this.editForm.controls.image.value, this.editForm.controls.price.value, this.editForm.controls.mileage.value, this.editForm.controls.description.value)
+                .subscribe(function (data) {
+                if (data['status'] == "done") {
+                    _this.msg('Successfully saved', 'success-notify');
+                    _this.router.navigate(["car/" + _this.id]);
+                }
+                else {
+                    _this.msg('Unsafe server response', 'error-notify');
+                }
+            });
+        }
+        else {
+            this.msg('Fill in the require fields', 'error-notify');
+        }
+    };
+    CarEditComponent.prototype.msg = function (message, panelClass) {
+        this.snackBar.openFromComponent(_components_notification_notification_component__WEBPACK_IMPORTED_MODULE_5__["NotificationComponent"], {
+            data: message,
+            panelClass: panelClass,
+            duration: 3000
+        });
+    };
+    CarEditComponent.prototype.back = function () {
+        this.router.navigate(["car/" + this.id]);
+    };
+    CarEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-car-edit',
+            template: __webpack_require__(/*! ./car-edit.component.html */ "./src/app/components/cars/car-edit/car-edit.component.html"),
+            styles: [__webpack_require__(/*! ./car-edit.component.scss */ "./src/app/components/cars/car-edit/car-edit.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _service_car_service__WEBPACK_IMPORTED_MODULE_2__["CarService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormBuilder"]])
+    ], CarEditComponent);
+    return CarEditComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/components/cars/car-search/car-search.component.html":
 /*!**********************************************************************!*\
   !*** ./src/app/components/cars/car-search/car-search.component.html ***!
@@ -726,7 +972,7 @@ var CarSearchComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" routerLink=\"/cars/add\">Add New</button>\r\n<ul class=\"cars\">\r\n  <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n    <div class=\"flex-elem\" (click)=\"singular(car.id)\">\r\n      <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n      <div class=\"content\">\r\n        <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>\r\n      </div>\r\n    </div>\r\n    <button color=\"warn\" class=\"remove-car\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n  </li>\r\n</ul>\r\n"
+module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" (click)=\"addNew()\">Add New</button>\r\n<ng-template [ngIf]=\"cars.length > 0\" [ngIfElse]=\"noResults\">\r\n  <ul class=\"cars\">\r\n    <li class=\"section\" *ngFor=\"let car of cars; let id = index;\">\r\n      <div class=\"flex-elem\" (click)=\"singular(car.id)\">\r\n        <img class=\"image\" src=\"{{car.image}}\" alt=\"\">\r\n        <div class=\"content\">\r\n          <h3>{{car.brand}} {{car.model}} {{car.year}}</h3>\r\n          <h4>{{car.price}}$</h4>\r\n          <p>Mileage: {{car.mileage == '' || car.mileage == 0 ? 'no mileage' : car.mileage + ' mi'}}</p>\r\n          <div>{{car.description}}</div>\r\n        </div>\r\n      </div>\r\n      <button color=\"warn\" class=\"remove-car\" (click)=\"remove(car.id)\"><mat-icon>clear</mat-icon></button>\r\n    </li>\r\n  </ul>\r\n</ng-template>\r\n<ng-template #noResults>\r\n  <h3 class=\"no-data\">No results</h3>\r\n</ng-template>\r\n"
 
 /***/ }),
 
@@ -737,7 +983,7 @@ module.exports = "<button mat-raised-button color=\"accent\" class=\"add_new\" r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".add_new {\n  float: right; }\n\nli {\n  list-style-type: none; }\n\n.cars {\n  padding: 0;\n  margin-top: 54px; }\n\nli.section {\n  margin: 15px 10px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #f7f7f7;\n  position: relative; }\n\nli.section .flex-elem {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    cursor: pointer; }\n\nli.section .flex-elem .image img, li.section .flex-elem .desc {\n      display: inline-flex;\n      color: black;\n      padding: 15px; }\n\nli.section .flex-elem .image {\n      max-width: 100%;\n      max-height: 100%;\n      height: 100%;\n      width: 150px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content {\n      height: 150px;\n      width: 100%;\n      flex: 1 300px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content h3 {\n        margin: 0;\n        margin-bottom: 10px;\n        color: #3f51b5; }\n\nbutton.remove-car {\n  position: absolute;\n  margin: -4px;\n  height: 28px;\n  width: 28px;\n  border-radius: 15px;\n  background: crimson;\n  border: none;\n  padding: 0;\n  right: 0;\n  top: 0;\n  cursor: pointer; }\n\nbutton.remove-car:hover {\n    background: red; }\n\nbutton.remove-car mat-icon {\n    color: white;\n    padding-top: 2px;\n    font-size: 20px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zaG93LWFsbC9DOlxceGFtcHBcXGh0ZG9jc1xcTGFyYXZlbC1Bbmd1bGFyL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYXJzXFxjYXItc2hvdy1hbGxcXGNhci1zaG93LWFsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLHFCQUFxQixFQUFBOztBQUV2QjtFQUNFLFVBQVU7RUFDVixnQkFBZ0IsRUFBQTs7QUFFbEI7RUFDRSxpQkFBaUI7RUFDakIsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsa0JBQWtCLEVBQUE7O0FBTHBCO0lBUUksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZUFBZSxFQUFBOztBQVhuQjtNQWNNLG9CQUFvQjtNQUNwQixZQUFZO01BQ1osYUFBYSxFQUFBOztBQWhCbkI7TUFvQk0sZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixZQUFZO01BQ1osWUFBWTtNQUNaLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUF6QnhCO01BNkJNLGFBQWE7TUFDYixXQUFXO01BQ1gsYUFBYTtNQUNiLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUFqQ3hCO1FBb0NRLFNBQVM7UUFDVCxtQkFBbUI7UUFDbkIsY0FBYyxFQUFBOztBQU10QjtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osWUFBWTtFQUNaLFdBQVc7RUFDWCxtQkFBbUI7RUFDbkIsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixVQUFVO0VBQ1YsUUFBUTtFQUNSLE1BQU07RUFDTixlQUFlLEVBQUE7O0FBWGpCO0lBY0ksZUFBZSxFQUFBOztBQWRuQjtJQWtCSSxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItc2hvdy1hbGwvY2FyLXNob3ctYWxsLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmFkZF9uZXd7XHJcbiAgZmxvYXQ6IHJpZ2h0O1xyXG59XHJcblxyXG5saXtcclxuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XHJcbn1cclxuLmNhcnN7XHJcbiAgcGFkZGluZzogMDtcclxuICBtYXJnaW4tdG9wOiA1NHB4O1xyXG59XHJcbmxpLnNlY3Rpb257XHJcbiAgbWFyZ2luOiAxNXB4IDEwcHg7XHJcbiAgcGFkZGluZzogMTVweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgYmFja2dyb3VuZDogI2Y3ZjdmNztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcblxyXG4gIC5mbGV4LWVsZW17XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAuaW1hZ2UgaW1nLCAuZGVzY3tcclxuICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgICAgIGNvbG9yOiBibGFjaztcclxuICAgICAgcGFkZGluZzogMTVweDtcclxuICAgIH1cclxuXHJcbiAgICAuaW1hZ2V7XHJcbiAgICAgIG1heC13aWR0aDogMTAwJTtcclxuICAgICAgbWF4LWhlaWdodDogMTAwJTtcclxuICAgICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgICB3aWR0aDogMTUwcHg7XHJcbiAgICAgIG1hcmdpbjogMTBweDtcclxuICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5jb250ZW50e1xyXG4gICAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgZmxleDogMSAzMDBweDtcclxuICAgICAgbWFyZ2luOiAxMHB4O1xyXG4gICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcblxyXG4gICAgICBoM3tcclxuICAgICAgICBtYXJnaW46IDA7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgICAgICBjb2xvcjogIzNmNTFiNTtcclxuICAgICAgfVxyXG4gICAgfVxyXG5cclxuICB9XHJcbn1cclxuYnV0dG9uLnJlbW92ZS1jYXJ7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIG1hcmdpbjogLTRweDtcclxuICBoZWlnaHQ6IDI4cHg7XHJcbiAgd2lkdGg6IDI4cHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcclxuICBiYWNrZ3JvdW5kOiBjcmltc29uO1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBwYWRkaW5nOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIHRvcDogMDtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcblxyXG4gICY6aG92ZXJ7XHJcbiAgICBiYWNrZ3JvdW5kOiByZWQ7XHJcbiAgfVxyXG5cclxuICBtYXQtaWNvbntcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIHBhZGRpbmctdG9wOiAycHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
+module.exports = ".add_new {\n  float: right; }\n\nli {\n  list-style-type: none; }\n\n.cars {\n  padding: 0;\n  margin-top: 54px; }\n\nli.section {\n  margin: 15px 10px;\n  padding: 15px;\n  border-radius: 5px;\n  background: #f7f7f7;\n  position: relative; }\n\nli.section .flex-elem {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: wrap;\n    cursor: pointer; }\n\nli.section .flex-elem .image img, li.section .flex-elem .desc {\n      display: inline-flex;\n      color: black;\n      padding: 15px; }\n\nli.section .flex-elem .image {\n      max-width: 100%;\n      max-height: 100%;\n      height: 100%;\n      width: 150px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content {\n      height: 150px;\n      width: 100%;\n      flex: 1 300px;\n      margin: 10px;\n      border-radius: 5px; }\n\nli.section .flex-elem .content h3, li.section .flex-elem .content h4, li.section .flex-elem .content p {\n        margin: 0;\n        margin-bottom: 10px; }\n\nli.section .flex-elem .content h3 {\n        color: #3f51b5; }\n\nli.section .flex-elem .content h4 {\n        color: forestgreen; }\n\nli.section .flex-elem .content div {\n        height: calc(100% - 77px);\n        overflow: hidden; }\n\nbutton.remove-car {\n  position: absolute;\n  margin: -4px;\n  height: 28px;\n  width: 28px;\n  border-radius: 15px;\n  background: crimson;\n  border: none;\n  padding: 0;\n  right: 0;\n  top: 0;\n  cursor: pointer; }\n\nbutton.remove-car:hover {\n    background: red; }\n\nbutton.remove-car mat-icon {\n    color: white;\n    padding-top: 2px;\n    font-size: 20px; }\n\n.no-data {\n  text-align: center;\n  padding-top: 46px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zaG93LWFsbC9DOlxceGFtcHBcXGh0ZG9jc1xcTGFyYXZlbC1Bbmd1bGFyL3NyY1xcYXBwXFxjb21wb25lbnRzXFxjYXJzXFxjYXItc2hvdy1hbGxcXGNhci1zaG93LWFsbC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQVksRUFBQTs7QUFHZDtFQUNFLHFCQUFxQixFQUFBOztBQUd2QjtFQUNFLFVBQVU7RUFDVixnQkFBZ0IsRUFBQTs7QUFHbEI7RUFDRSxpQkFBaUI7RUFDakIsYUFBYTtFQUNiLGtCQUFrQjtFQUNsQixtQkFBbUI7RUFDbkIsa0JBQWtCLEVBQUE7O0FBTHBCO0lBUUksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZUFBZSxFQUFBOztBQVhuQjtNQWNNLG9CQUFvQjtNQUNwQixZQUFZO01BQ1osYUFBYSxFQUFBOztBQWhCbkI7TUFvQk0sZUFBZTtNQUNmLGdCQUFnQjtNQUNoQixZQUFZO01BQ1osWUFBWTtNQUNaLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUF6QnhCO01BNkJNLGFBQWE7TUFDYixXQUFXO01BQ1gsYUFBYTtNQUNiLFlBQVk7TUFDWixrQkFBa0IsRUFBQTs7QUFqQ3hCO1FBb0NRLFNBQVM7UUFDVCxtQkFBbUIsRUFBQTs7QUFyQzNCO1FBeUNRLGNBQWMsRUFBQTs7QUF6Q3RCO1FBNkNRLGtCQUFrQixFQUFBOztBQTdDMUI7UUFpRFEseUJBQXlCO1FBQ3pCLGdCQUFnQixFQUFBOztBQU14QjtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osWUFBWTtFQUNaLFdBQVc7RUFDWCxtQkFBbUI7RUFDbkIsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixVQUFVO0VBQ1YsUUFBUTtFQUNSLE1BQU07RUFDTixlQUFlLEVBQUE7O0FBWGpCO0lBY0ksZUFBZSxFQUFBOztBQWRuQjtJQWtCSSxZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLGVBQWUsRUFBQTs7QUFJbkI7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NhcnMvY2FyLXNob3ctYWxsL2Nhci1zaG93LWFsbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5hZGRfbmV3e1xyXG4gIGZsb2F0OiByaWdodDtcclxufVxyXG5cclxubGl7XHJcbiAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xyXG59XHJcblxyXG4uY2Fyc3tcclxuICBwYWRkaW5nOiAwO1xyXG4gIG1hcmdpbi10b3A6IDU0cHg7XHJcbn1cclxuXHJcbmxpLnNlY3Rpb257XHJcbiAgbWFyZ2luOiAxNXB4IDEwcHg7XHJcbiAgcGFkZGluZzogMTVweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgYmFja2dyb3VuZDogI2Y3ZjdmNztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcblxyXG4gIC5mbGV4LWVsZW17XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuXHJcbiAgICAuaW1hZ2UgaW1nLCAuZGVzY3tcclxuICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgICAgIGNvbG9yOiBibGFjaztcclxuICAgICAgcGFkZGluZzogMTVweDtcclxuICAgIH1cclxuXHJcbiAgICAuaW1hZ2V7XHJcbiAgICAgIG1heC13aWR0aDogMTAwJTtcclxuICAgICAgbWF4LWhlaWdodDogMTAwJTtcclxuICAgICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgICB3aWR0aDogMTUwcHg7XHJcbiAgICAgIG1hcmdpbjogMTBweDtcclxuICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgfVxyXG5cclxuICAgIC5jb250ZW50e1xyXG4gICAgICBoZWlnaHQ6IDE1MHB4O1xyXG4gICAgICB3aWR0aDogMTAwJTtcclxuICAgICAgZmxleDogMSAzMDBweDtcclxuICAgICAgbWFyZ2luOiAxMHB4O1xyXG4gICAgICBib3JkZXItcmFkaXVzOiA1cHg7XHJcblxyXG4gICAgICBoMywgaDQsIHB7XHJcbiAgICAgICAgbWFyZ2luOiAwO1xyXG4gICAgICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIGgze1xyXG4gICAgICAgIGNvbG9yOiAjM2Y1MWI1O1xyXG4gICAgICB9XHJcblxyXG4gICAgICBoNHtcclxuICAgICAgICBjb2xvcjogZm9yZXN0Z3JlZW47XHJcbiAgICAgIH1cclxuXHJcbiAgICAgIGRpdntcclxuICAgICAgICBoZWlnaHQ6IGNhbGMoMTAwJSAtIDc3cHgpO1xyXG4gICAgICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgfVxyXG59XHJcbmJ1dHRvbi5yZW1vdmUtY2Fye1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBtYXJnaW46IC00cHg7XHJcbiAgaGVpZ2h0OiAyOHB4O1xyXG4gIHdpZHRoOiAyOHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XHJcbiAgYmFja2dyb3VuZDogY3JpbXNvbjtcclxuICBib3JkZXI6IG5vbmU7XHJcbiAgcGFkZGluZzogMDtcclxuICByaWdodDogMDtcclxuICB0b3A6IDA7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG5cclxuICAmOmhvdmVye1xyXG4gICAgYmFja2dyb3VuZDogcmVkO1xyXG4gIH1cclxuXHJcbiAgbWF0LWljb257XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBwYWRkaW5nLXRvcDogMnB4O1xyXG4gICAgZm9udC1zaXplOiAyMHB4O1xyXG4gIH1cclxufVxyXG5cclxuLm5vLWRhdGF7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBhZGRpbmctdG9wOiA0NnB4O1xyXG59Il19 */"
 
 /***/ }),
 
@@ -788,6 +1034,9 @@ var CarShowAllComponent = /** @class */ (function () {
             _this.cars = all;
         });
     };
+    CarShowAllComponent.prototype.addNew = function () {
+        this.router.navigate(['cars/add']);
+    };
     CarShowAllComponent.prototype.remove = function (id) {
         var _this = this;
         this.ts.deleteCar(id).subscribe(function (data) {
@@ -836,7 +1085,7 @@ var CarShowAllComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Car Details</h3>\n<p>Car ID {{car?.id}}</p>\n<p>Car Brand {{car?.brand}}</p>\n<p>Car Model {{car?.model}}</p>\n<p>Car Year {{car?.year}}</p>\n<p>Car Price {{car?.price}}</p>\n<p>Car Mileage {{car?.mileage}}</p>\n<p>Car Image {{car?.image}}</p>\n<p>Car Description {{car?.description}}</p>\n<p>Car Date {{car?.date}}</p>\n<button routerLink=\"/cars\">Back</button>\n"
+module.exports = "<div class=\"container\">\n    <button mat-raised-button color=\"accent\" class=\"edit\" (click)=\"edit(car?.id)\">Edit</button>\n    <div class=\"content\">\n        <h2>{{car?.brand}} {{car?.model}} {{car?.year}}</h2>\n        <div class=\"center\" *ngIf=\"car?.image\">\n            <img class=\"image\" src=\"{{car?.image}}\" alt=\"\">\n        </div>\n        <h3>Price: {{car?.price}}$</h3>\n        <h4>Mileage: {{car?.mileage == '' || car?.mileage == 0 ? 'no mileage' : car?.mileage + ' miles'}}</h4>\n        <h4>Added at {{car?.created_at}}</h4>\n        <h4 *ngIf=\"car?.updated_at != car?.created_at\">Updated at {{car?.updated_at}}</h4>\n        <ng-template [ngIf]=\"car?.description\">\n            <h4>Description</h4>\n            <div>{{car?.description}}</div>\n        </ng-template>\n        <button style=\"margin-top: 5px;\" mat-raised-button (click)=\"back()\">Back</button>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -847,7 +1096,7 @@ module.exports = "<h3>Car Details</h3>\n<p>Car ID {{car?.id}}</p>\n<p>Car Brand 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvY2Fycy9jYXItc2luZ2xlL2Nhci1zaW5nbGUuY29tcG9uZW50LnNjc3MifQ== */"
+module.exports = ".container {\n  position: relative; }\n  .container .edit {\n    position: absolute;\n    right: 0; }\n  .container .content {\n    padding-top: 46px; }\n  .container .content h2, .container .content h3, .container .content h4, .container .content div, .container .content .center {\n      margin: 0;\n      margin-bottom: 10px; }\n  .container .content h3 {\n      color: forestgreen; }\n  .container .content .center {\n      text-align: center; }\n  .container .content .center img {\n        max-width: 100%;\n        max-height: 500px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9jYXJzL2Nhci1zaW5nbGUvQzpcXHhhbXBwXFxodGRvY3NcXExhcmF2ZWwtQW5ndWxhci9zcmNcXGFwcFxcY29tcG9uZW50c1xcY2Fyc1xcY2FyLXNpbmdsZVxcY2FyLXNpbmdsZS5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFrQixFQUFBO0VBRHRCO0lBR1Esa0JBQWtCO0lBQ2xCLFFBQVEsRUFBQTtFQUpoQjtJQU9RLGlCQUFpQixFQUFBO0VBUHpCO01BVVksU0FBUztNQUNULG1CQUFtQixFQUFBO0VBWC9CO01BZVksa0JBQWtCLEVBQUE7RUFmOUI7TUFtQlksa0JBQWtCLEVBQUE7RUFuQjlCO1FBcUJnQixlQUFlO1FBQ2YsaUJBQWlCLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2NhcnMvY2FyLXNpbmdsZS9jYXItc2luZ2xlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIC5lZGl0e1xyXG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICByaWdodDogMDtcclxuICAgIH1cclxuICAgIC5jb250ZW50e1xyXG4gICAgICAgIHBhZGRpbmctdG9wOiA0NnB4O1xyXG5cclxuICAgICAgICBoMiwgaDMsIGg0LCBkaXYsIC5jZW50ZXJ7XHJcbiAgICAgICAgICAgIG1hcmdpbjogMDtcclxuICAgICAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIGgze1xyXG4gICAgICAgICAgICBjb2xvcjogZm9yZXN0Z3JlZW47XHJcbiAgICAgICAgfVxyXG5cclxuICAgICAgICAuY2VudGVye1xyXG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICAgICAgICAgIGltZ3tcclxuICAgICAgICAgICAgICAgIG1heC13aWR0aDogMTAwJTtcclxuICAgICAgICAgICAgICAgIG1heC1oZWlnaHQ6IDUwMHB4O1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgfVxyXG59Il19 */"
 
 /***/ }),
 
@@ -870,17 +1119,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CarSingleComponent = /** @class */ (function () {
-    function CarSingleComponent(route, carservice) {
+    function CarSingleComponent(route, router, ts) {
         this.route = route;
-        this.carservice = carservice;
+        this.router = router;
+        this.ts = ts;
     }
     CarSingleComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (data) {
-            _this.carservice.singularCar(data.id).subscribe(function (auto) {
+            _this.ts.singularCar(data.id).subscribe(function (auto) {
                 _this.car = auto;
             });
         });
+    };
+    CarSingleComponent.prototype.edit = function (id) {
+        this.router.navigate(["car/" + id + "/edit"]);
+    };
+    CarSingleComponent.prototype.back = function () {
+        this.router.navigate(['cars']);
     };
     CarSingleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -888,7 +1144,7 @@ var CarSingleComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./car-single.component.html */ "./src/app/components/cars/car-single/car-single.component.html"),
             styles: [__webpack_require__(/*! ./car-single.component.scss */ "./src/app/components/cars/car-single/car-single.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _service_car_service__WEBPACK_IMPORTED_MODULE_3__["CarService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _service_car_service__WEBPACK_IMPORTED_MODULE_3__["CarService"]])
     ], CarSingleComponent);
     return CarSingleComponent;
 }());
@@ -1126,6 +1382,11 @@ var CarService = /** @class */ (function () {
     };
     CarService.prototype.singularCar = function (index) {
         return this.http.get(this.server + 'singular', { params: { id: index } });
+    };
+    CarService.prototype.editCar = function (index, brand, model, year, image, price, mileage, description) {
+        var changes = new _Car__WEBPACK_IMPORTED_MODULE_3__["Car"](brand, model, year, image, price, mileage, description);
+        changes.id = index;
+        return this.http.put(this.server + 'update', changes);
     };
     CarService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

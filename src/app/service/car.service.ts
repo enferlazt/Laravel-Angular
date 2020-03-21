@@ -17,6 +17,7 @@ export class CarService {
   server: string = 'http://localhost/Laravel-Angular/server/public/api/';
   shared_value: object;
   to_component = new BehaviorSubject<object>({});
+  car: object;
 
   constructor(private http: HttpClient) {
     this.shared_value;
@@ -52,5 +53,11 @@ export class CarService {
 
   singularCar(index):Observable<Car> {
     return this.http.get<Car>(this.server + 'singular', {params: {id: index}});
+  }
+
+  editCar(index, brand, model, year, image, price, mileage, description):Observable<Car[]> {
+    const changes = new Car(brand, model, year, image, price, mileage, description);
+    changes.id = index;
+    return this.http.put<Car[]>(this.server + 'update', changes);
   }
 }
