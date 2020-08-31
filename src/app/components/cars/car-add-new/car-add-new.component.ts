@@ -42,6 +42,15 @@ function numberValidator(): ValidatorFn {
   }
 }
 
+function mileageValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (control.value != null && control.value >= '0') {
+      return null
+    }
+    return { 'invalidInput': { value: control.value } }
+  }
+}
+
 function srtingValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     if (control.value != null && control.value.length > 0) {
@@ -134,7 +143,7 @@ export class CarAddNewComponent implements OnInit {
     year: new FormControl('', { validators: [yearValidator(), Validators.required] }),
     image: '',
     price: new FormControl('', { validators: [numberValidator(), Validators.required] }),
-    mileage: 0,
+    mileage: new FormControl('0', { validators: [mileageValidator(), Validators.required] }),
     description: ''
   });
 
@@ -162,7 +171,7 @@ export class CarAddNewComponent implements OnInit {
 
   add(event){
     event.preventDefault();
-    if(this.addForm.controls.brand.valid && this.addForm.controls.model.valid && this.addForm.controls.year.valid && this.addForm.controls.price.valid){
+    if(this.addForm.controls.brand.valid && this.addForm.controls.model.valid && this.addForm.controls.year.valid && this.addForm.controls.price.valid && this.addForm.controls.mileage.valid){
       this.ts.addCar(this.addForm.controls.brand.value,
         this.addForm.controls.model.value,
         this.addForm.controls.year.value,

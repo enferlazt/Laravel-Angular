@@ -1,27 +1,61 @@
-# Angular7
+# Description
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6.
+It's demonstration project build on Angular7 and Laravel
 
-## Development server
+This web app use [Material Design](https://material.angular.io/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The app has cars thematic for ease perception
 
-## Code scaffolding
+### Facilities
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The project has next facilites:
+* Show list of card
+* Create new card
+* Edit one of list card
+* Remove card
+* Search by card features
 
-## Build
+### Components
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Based on 5 components:
+* Car add new
+* Car edit
+* Car search
+* Car show all
+* Car single
 
-## Running unit tests
+This components related each other: *Car add new*, *Car edit*, *Car show all*, *Car single* are interchangeable, when *Car search* uses with all components
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Pages
 
-## Running end-to-end tests
+Started page is a list of cards(cars).
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![Started Page](https://i.ibb.co/258tKHz/Screenshot-1.png)
 
-## Further help
+On this page you can see search filter on left sidebar. Also you can click on card to open it or remove this card from database should to click on cross char on top right.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The search form works with any filled fields and can combine them.
+
+![Search form result with fill in fields](https://i.ibb.co/8n3hPWW/Screenshot-2.png)
+
+Next page is single page of car.
+
+![Single page of car](https://i.ibb.co/98RvzcT/Screenshot-3.png)
+
+On this page you can see bigger image, read full description, when the car was added and when edited. Also here you can go  back to list for this click on the button on bottom left. On top right you can see edit button.
+
+Edit/Create pages look very similar, therefore analyzing only one.
+
+![Create new car page](https://i.ibb.co/Fsr4Z4R/Screenshot-4.png)
+
+This form has required fields which need to fill. If required fields not filled and you push add button you gift a notification with problem. The app has many notification in work process: notification about successful remove or edit card.
+
+Field brand in search form, edit and create pages is unique. It contains sorted cars brands by alphabet.
+
+![Brand Field](https://i.ibb.co/C99bjv9/Screenshot-5.png)
+
+### Responsive Design
+
+This app supports responsive design for phone and tablet. Min works width is 320 pixels
+
+![App on phone width](https://i.ibb.co/nMHbKgV/Screenshot-6.png)

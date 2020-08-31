@@ -43,6 +43,15 @@ function numberValidator(): ValidatorFn {
   }
 }
 
+function mileageValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (control.value != null && control.value >= '0') {
+      return null
+    }
+    return { 'invalidInput': { value: control.value } }
+  }
+}
+
 function srtingValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     if (control.value != null && control.value.length > 0) {
@@ -142,7 +151,7 @@ export class CarEditComponent implements OnInit {
     year: new FormControl('', { validators: [yearValidator(), Validators.required] }),
     image: '',
     price: new FormControl('', { validators: [numberValidator(), Validators.required] }),
-    mileage: 0,
+    mileage: new FormControl('0', { validators: [mileageValidator(), Validators.required] }),
     description: ''
   });
 
@@ -186,7 +195,7 @@ export class CarEditComponent implements OnInit {
 
   edit(event){
     event.preventDefault();
-    if(this.editForm.controls.brand.valid && this.editForm.controls.model.valid && this.editForm.controls.year.valid && this.editForm.controls.price.valid){
+    if(this.editForm.controls.brand.valid && this.editForm.controls.model.valid && this.editForm.controls.year.valid && this.editForm.controls.price.valid && this.editForm.controls.mileage.valid){
       this.ts.editCar(this.id,
         this.editForm.controls.brand.value,
         this.editForm.controls.model.value,
